@@ -26,3 +26,7 @@ export const slugify = (string) => {
       .toLowerCase()
   );
 };
+
+export const calcPercentageSold = (edition, inventory) => {
+  return ((edition - inventory) / edition) * 100;
+};

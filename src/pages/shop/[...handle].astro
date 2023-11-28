@@ -6,10 +6,8 @@ import { books } from "../../constants/ids";
 
 import Layout from "../../layouts/Layout.astro";
 import {ImageContainer, TextContainer} from '../../components/Product'
-import AddToCartForm from "../../components/Product/AddToCartForm.svelte";
 
 const { handle } = Astro.params;
-
 const { ID, SKU } = books[handle];
 
 const headers = Astro.request.headers;

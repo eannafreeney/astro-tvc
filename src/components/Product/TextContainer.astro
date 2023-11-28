@@ -1,23 +1,26 @@
 ---
-import { slugify } from '../../utils/common';
+import { slugify, calcPercentageSold } from '../../utils/common';
 import {AddToCartForm, Breadcrumb} from '../Product'
 
 const {shopifyProduct, airtableData} = Astro.props;
-
-console.log(airtableData);
-
-
 const variants = shopifyProduct?.variants.nodes;
 
-  // const hasPrint = !!print_image;
-  // const isFunding = categories.includes("Funding");
+  const hasPrint = !!airtableData.print_image;
+  const isFunding = airtableData.categories.includes("Funding");
 
+  const firstVariant = shopifyProduct?.variants.nodes[0];
+  console.log(firstVariant);
+  
+  
+  const fundingPercentage = Math.round(
+    calcPercentageSold(airtableData.edition_size, firstVariant.inventory_quantity)
+  );
 
 ---
     <section class="mt-4 container">
       <Breadcrumb data={airtableData} />
       <div>
-        <div >{airtableData.title}</div>
+        <div class="font-SohneKraftig">{airtableData.title}</div>
         <ul >
           {airtableData.artist.map((artist) => (
             <a href={`/artists/${artist}`}>
@@ -28,11 +31,23 @@ const variants = shopifyProduct?.variants.nodes;
         <!-- <div>{getPrice(categories, price, comparePrice)}</div> -->
       </div>
       <AddToCartForm client:load variants={variants} />
+      {
+        isFunding && (
+  //       <div class="container h-4 w-full bg-[#e0e0de]" completed={fundingPercentage}>
+  //   <div class="h-full">
+  //     <span class="text-white font-bold">{`${fundingPercentage}% Funded`}</span>
+  //   </div>
+  // </div>
+        <div class="container border border-gray-500 p-4 mb-2 text-gray-500">
+    {airtableData.funding}
+  </div>
+        )
+      }
       <div class="hidden md:block">
-        <div>{airtableData.description}</div>
-        <div>{airtableData.bio}</div>
+        <div class="mb-2">{airtableData.description}</div>
+        <div class="mb-2">{airtableData.bio}</div>
       </div>
-      <ul class="mb-4">
+      <ul class="mb-2">
         <li class="text-gray-500 text-sm">
           {airtableData.pages} pages, {airtableData.size}
         </li>
@@ -43,7 +58,7 @@ const variants = shopifyProduct?.variants.nodes;
         </li>
         <li class="text-gray-500 text-sm">{airtableData.SKU}</li>
       </ul>
-      <div class="flex flex-wrap gap-1">
+      <div class="flex flex-wrap gap-1 mb-2">
         {airtableData.tags.map((tag) => (
           <a
             href={`/tag/${slugify(tag)}`}
@@ -53,5 +68,8 @@ const variants = shopifyProduct?.variants.nodes;
           </a>
         ))}
       </div>
+      {
+        hasPrint && <div>PRINT</div>
+      }
     </section>
 

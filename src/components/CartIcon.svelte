@@ -4,6 +4,7 @@
 
   onMount(() => {
     initCart();
+    
   });
 
   function openCart() {
@@ -20,7 +21,7 @@
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-7 h-7 sm:w-8 sm:h-8 pointer-events-none"
+      class="w-6 h-6 sm:w-7 sm:h-7 pointer-events-none"
     >
       <path
         stroke-linecap="round"

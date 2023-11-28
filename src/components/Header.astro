@@ -1,22 +1,22 @@
 ---
-import Logo from "./Logo.astro";
+import {Logo, Navigation} from "./index";
+import logo from '../assets/images/logo.png'
+
 import CartIcon from "./CartIcon.svelte";
 ---
 
-<header class="sticky top-0 z-40">
+<header class="sticky top-0 z-40 border-double border-b border-black">
   <div class="border-b bg-white/70 py-3 backdrop-blur-2xl">
-    <nav class="container grid grid-cols-3 items-center">
-      <a href="/">
-        <span class="sr-only">Logo</span>
-        <Logo />
-      </a>
-      <h1
-        class="flex justify-center text-sm font-semibold text-gray-900 sm:text-xl"
-      >
-        Astro 🧑‍🚀 Shopify
-      </h1>
+    <nav class="container flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="/">
+          <span class="sr-only">Logo</span>
+          <Logo {logo}/>
+        </a>
+        <Navigation />
+      </div>
       <div class="justify-self-end">
-        <CartIcon client:load />
+          <CartIcon client:load />
       </div>
     </nav>
   </div>

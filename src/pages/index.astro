@@ -7,21 +7,21 @@ import Layout from "../layouts/Layout.astro";
 
 const data = await Promise.all([
   getCollection("recent", 10),
-  // getCollection("city-diaries", 10),
+  getCollection("city-diaries", 10),
 ]);
 const collections = getHomepageCollections(data);
+
 ---
 
 <Layout>
   <!-- <Hero slides={data.slides.nodes} /> -->
   <!-- <CollectionsLinks /> -->
-  {
-    (
-      <ProductsContainer title="Recent">
-        {data[0].map((product) => (
-          <Product product={product} />
+
+    {collections.map(({ title, data, link }) => (
+          <ProductsContainer title={title} link={link}>
+            {data.map((product) => (
+              <Product product={product} />
+            ))}
+          </ProductsContainer>
         ))}
-      </ProductsContainer>
-    )
-  }
 </Layout>

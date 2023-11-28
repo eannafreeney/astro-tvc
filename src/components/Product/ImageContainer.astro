@@ -1,5 +1,7 @@
 ---
 import { ImageGallery } from "../../components/Product";
+import {ProductBadge} from '../'
+import { Image } from 'astro:assets';
 
 const {data} = Astro.props
 
@@ -12,11 +14,13 @@ const {data} = Astro.props
     <div class="hidden md:block md:relative md:min-h-screen">
       <div class="md:absolute md:left-0 md:right-0 md:h-full md:scroll-behavior-smooth md:scrollbar-none md:overflow-y-scroll no-scrollbar">
         <div class="md:mb-0">
-          <img
+          <Image
             src={data.cover[0].url}
             alt={data.title}
+            width={data.cover[0].width}
+            height={data.cover[0].height}
           />
-          <!-- <ProductBadge categories={data.categories} /> -->
+          <ProductBadge categories={data.categories} />
         </div>
         <ImageGallery images={data.gallery} />
       </div>

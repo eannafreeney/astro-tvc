@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const tvcBlue = "#0099cc";
+
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
@@ -7,25 +10,36 @@ module.exports = {
       padding: "1.5rem",
     },
     extend: {
+      colors: {
+        primary: {
+          100: tvcBlue,
+        },
+      },
+      borderColor: {
+        primary: {
+          100: tvcBlue,
+        },
+      },
+      backgroundColor: {
+        primary: {
+          100: tvcBlue,
+        },
+      },
+      fontFamily: {
+        SohneLight: ["Sohne-Light"],
+        SohneBuch: ["Sohne-Buch"],
+        SohneKraftig: ["Sohne-Kraftig"],
+      },
       keyframes: {
-        shake: {
-          "0%": { transform: "translate(1px, 1px) rotate(0deg)" },
-          "10%": { transform: "translate(-1px, -2px) rotate(-1deg)" },
-          "20%": { transform: "translate(-3px, 0px) rotate(1deg)" },
-          "30%": { transform: "translate(3px, 2px) rotate(0deg)" },
-          "40%": { transform: "translate(1px, -1px) rotate(1deg)" },
-          "50%": { transform: "translate(-1px, 2px) rotate(-1deg)" },
-          "60%": { transform: "translate(-3px, 1px) rotate(0deg)" },
-          "70%": { transform: "translate(3px, 1px) rotate(-1deg)" },
-          "80%": { transform: "translate(-1px, -1px) rotate(1deg)" },
-          "90%": { transform: "translate(1px, 2px) rotate(0deg)" },
-          "100%": { transform: "translate(1px, -2px) rotate(-1deg)" },
+        marquee: {
+          "0%": { transform: "translate(0, 0)" },
+          "100%": { transform: "translate(-100%, 0)" },
         },
       },
       animation: {
-        shake: "shake 0.5s infinite",
+        marquee: "marquee linear infinite",
       },
     },
   },
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  plugins: [],
 };

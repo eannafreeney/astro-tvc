@@ -7,6 +7,7 @@ const { product } = Astro.props;
 
 const { title, artist, cover, categories } = product;
 const joinedArtists = [join(artist, " & ")];
+
 ---
 
 <article>
@@ -32,7 +33,7 @@ const joinedArtists = [join(artist, " & ")];
   <div class="mt-2">
     <a
       class="font-SohneKraftig hover:text-primary-100 block leading-5"
-      href={`/products/${slugify(title)}`}
+      href={`/shop/${slugify(title)}`}
     >
       {title}
     </a>

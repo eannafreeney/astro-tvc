@@ -7,4 +7,8 @@ export const books = {
     ID: "7400031322280",
     SKU: "TVC080",
   },
+  "bury-me-in-the-back-forty": {
+    ID: "8298846978314",
+    SKU: "TVC100"
+  }
 };

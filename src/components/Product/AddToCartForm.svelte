@@ -1,5 +1,5 @@
 <script>
-  import { addCartItem, isCartUpdating, cart } from "../stores/cart";
+  import { addCartItem, isCartUpdating, cart } from "../../stores/cart";
 
   export let variants;
   let selectedVariant = variants[0]

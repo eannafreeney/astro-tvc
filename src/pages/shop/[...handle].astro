@@ -4,10 +4,9 @@ import { getBookBySKU } from "../../api/api";
 import { setCache } from "../../utils/cache";
 import { books } from "../../constants/ids";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import AddToCartForm from "../../components/AddToCartForm.svelte";
-import ProductImageGallery from "../../components/ProductImageGallery.astro";
-import ProductInformations from "../../components/ProductInformations.astro";
+import Layout from "../../layouts/Layout.astro";
+import {ImageContainer, TextContainer} from '../../components/Product'
+import AddToCartForm from "../../components/Product/AddToCartForm.svelte";
 
 const { handle } = Astro.params;
 
@@ -32,18 +31,24 @@ const variants = shopifyProduct?.variants.nodes;
 setCache.short(Astro);
 ---
 
-{
-  (
-    <BaseLayout title={airtableData.title}>
-      <section class="container">
-        <div class="pb-16 pt-6 lg:grid lg:grid-cols-12 lg:gap-20">
-          <div class="mt-8 lg:col-span-5 lg:mt-0">
-            <div>
-              <AddToCartForm client:load variants={variants} />
-            </div>
-          </div>
-        </div>
-      </section>
-    </BaseLayout>
-  )
-}
+<Layout>
+  <section
+    class="md:grid md:grid-cols-[3fr,2fr] md:gap-4"
+  >
+    <div>
+      <ImageContainer data={airtableData} />
+    </div>
+    <div>
+      <TextContainer
+      airtableData={airtableData}
+      shopifyProduct={shopifyProduct}
+        
+      />
+    </div>
+  </section>
+</Layout>
+
+<!-- <AddToCartForm client:load variants={variants} /> -->
+
+
+

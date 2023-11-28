@@ -1,0 +1,14 @@
+---
+const {images} = Astro.props;
+
+---
+
+<div>
+    {images.map((image) => 
+        <img
+          src={image.url}
+          class="hidden md:block mb-0"
+        />
+      )
+    }
+  </div>

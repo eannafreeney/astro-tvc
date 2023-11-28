@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { slugify } from "../utils/utils";
+import { slugify } from "../utils/common";
 
 export const OVERVIEW_FIELDS = [
   "title",

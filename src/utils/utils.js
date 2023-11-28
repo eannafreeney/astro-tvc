@@ -17,21 +17,6 @@ export const getCollection = (data, limit = 6) =>
     .slice(0, limit)
     .sort(sortByLatestRelease);
 
-export const slugify = (category) => {
-  return (
-    category
-      // remove leading & trailing whitespace
-      .trim()
-      // remove special characters
-      // .replace(/[^A-Za-z0-9 ]/g, "")
-      // replace spaces
-      .replace(/\s+/g, "-")
-      // remove leading & trailing separtors
-      .replace(/^-+|-+$/g, "")
-      // output lowercase
-      .toLowerCase()
-  );
-};
 
 export const transformArrayToDictionary = (inputArray, keyField) => {
   return inputArray.reduce((acc, book) => {

@@ -1,0 +1,49 @@
+---
+import { getProductByID } from "./../../utils/shopify";
+import { getBookBySKU } from "../../api/api";
+import { setCache } from "../../utils/cache";
+import { books } from "../../constants/ids";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AddToCartForm from "../../components/AddToCartForm.svelte";
+import ProductImageGallery from "../../components/ProductImageGallery.astro";
+import ProductInformations from "../../components/ProductInformations.astro";
+
+const { handle } = Astro.params;
+
+const { ID, SKU } = books[handle];
+
+const headers = Astro.request.headers;
+const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
+const shopifyProduct = await getProductByID({
+  id: `gid://shopify/Product/${ID}` || "",
+  buyerIP: ip,
+});
+
+const airtableData = await getBookBySKU(SKU);
+
+if (!shopifyProduct) {
+  Astro.response.status = 404;
+}
+
+const firstVariant = shopifyProduct?.variants.nodes[0];
+const variants = shopifyProduct?.variants.nodes;
+
+setCache.short(Astro);
+---
+
+{
+  (
+    <BaseLayout title={airtableData.title}>
+      <section class="container">
+        <div class="pb-16 pt-6 lg:grid lg:grid-cols-12 lg:gap-20">
+          <div class="mt-8 lg:col-span-5 lg:mt-0">
+            <div>
+              <AddToCartForm client:load variants={variants} />
+            </div>
+          </div>
+        </div>
+      </section>
+    </BaseLayout>
+  )
+}

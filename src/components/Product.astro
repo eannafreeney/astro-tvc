@@ -1,0 +1,52 @@
+---
+import { slugify } from "../utils/common";
+import join from "lodash/join";
+import ProductBadge from "./ProductBadge.astro";
+
+const { product } = Astro.props;
+
+const { title, artist, cover, categories } = product;
+const joinedArtists = [join(artist, " & ")];
+---
+
+<article>
+  <div class="group relative left-0 top-0">
+    <a href={`/shop/${slugify(title)}`}>
+      <img
+        src={cover[0]?.url}
+        alt={title}
+        width={cover[0]?.width}
+        height={cover[0]?.height}
+        class="relative left-0 top-0 rounded opacity-100 group-hover:opacity-0"
+      />
+      <img
+        src={cover[1]?.url}
+        alt={title}
+        width={cover[1]?.width}
+        height={cover[1]?.height}
+        class="absolute left-0 top-0 rounded opacity-0 group-hover:opacity-100"
+      />
+    </a>
+    <ProductBadge categories={categories} />
+  </div>
+  <div class="mt-2">
+    <a
+      class="font-SohneKraftig hover:text-primary-100 block leading-5"
+      href={`/products/${slugify(title)}`}
+    >
+      {title}
+    </a>
+    {
+      joinedArtists.map((artist) => {
+        return (
+          <a
+            class="font-SohneBuch hover:text-primary-100 block"
+            href={`/artists/${slugify(artist)}`}
+          >
+            {artist}
+          </a>
+        );
+      })
+    }
+  </div>
+</article>

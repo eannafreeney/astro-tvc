@@ -1,0 +1,21 @@
+---
+const { title, link } = Astro.props;
+---
+
+<div class="container my-8">
+  <div class="flex items-center justify-between pb-4">
+    <div class="font-SohneKraftig text-2xl">{title}</div>
+    {
+      link && (
+        <div class="text-sm text-gray-500 hover:underline">
+          <a href={link}>View All</a>
+        </div>
+      )
+    }
+  </div>
+  <div
+    class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+  >
+    <slot />
+  </div>
+</div>

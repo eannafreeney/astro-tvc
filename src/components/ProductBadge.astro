@@ -1,0 +1,25 @@
+---
+const categoryMap = {
+  Sale: "bg-purple-400",
+  Funding: "bg-green-400",
+  New: "bg-primary-100",
+  "Sold Out": "bg-red-400",
+  "Final Copies": "bg-orange-400",
+};
+
+const { categories } = Astro.props;
+const category = categories.find((category) => category in categoryMap);
+---
+
+<!-- { if (category) {
+    return (
+      <div
+        class={`absolute top-0 right-0 block uppercase tracking-wider py-1 px-2 text-white text-xs rounded-bl-lg ${categoryMap[category]}`}
+      >
+        {category}
+      </div>
+    );
+  }
+
+  return null;
+} -->

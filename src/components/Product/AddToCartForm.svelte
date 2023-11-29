@@ -9,7 +9,7 @@
     $cart &&
     $cart.lines?.nodes.filter((item) => item.merchandise.id === selectedVariant.id)[0];
   $: noQuantityLeft =
-    variantInCart && variantQuantityAvailable <= variantInCart?.quantity;
+    variantInCart && selectedVariant.quantityAvailable <= variantInCart?.quantity;
 
   function handleVariantChange(event) {
     const selectedIndex = event.target.selectedIndex;
@@ -29,22 +29,23 @@
 </script>
 
 
-<form on:submit|preventDefault={(e) => addToCart(e)}>
+<form on:submit|preventDefault={(e) => addToCart(e)} class="my-4">
   {#if hasVariants}
-   <select on:change={handleVariantChange}>
+   <select on:change={handleVariantChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-primary-100 focus:border-primary-100 block w-fit p-2.5 mb-2">
     {#each variants as variant (variant.id)}
       <option value={variant.title}>{variant.title}</option>
     {/each}
   </select>
   {/if}
 
+
   <!-- Hidden fields to store selected variant's id and quantity -->
   <input type="hidden" bind:value={selectedVariant.id} name="id">
-  <input type="hidden" bind:value={selectedVariant.quantityAvailable} name="quantity">
+  <input type="hidden" name="quantity" value="1">
   
   <button
     type="submit"
-    class="button mt-10 w-full"
+    class="button"
     disabled={$isCartUpdating || noQuantityLeft || !selectedVariant.availableForSale}
   >
     {#if $isCartUpdating}
@@ -70,11 +71,12 @@
       </svg>
     {/if}
     {#if selectedVariant.availableForSale}
-      Add to bag
+      <span>Add to Cart</span>
     {:else}
-      Sold out
+      Sold Out
     {/if}
   </button>
+
   {#if noQuantityLeft}
     <div class="text-center text-red-600">
       <small>All units left are in your cart</small>

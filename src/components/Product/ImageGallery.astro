@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-const {images} = Astro.props;
-console.log(images);
+const {images, alt} = Astro.props;
 
 ---
 
@@ -9,6 +8,7 @@ console.log(images);
     {images.map((image) => 
         <Image
           src={image.url}
+          {alt}
           width={image.width}
           height={image.height}
           class="hidden md:block mb-0"

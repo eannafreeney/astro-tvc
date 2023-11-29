@@ -1,34 +1,32 @@
 ---
-import whiteLogo from '../assets/images/logo-version-white.png'
+import { Image } from "astro:assets";
+import whiteLogo from "../assets/images/logo-version-white.png";
 import { data as navLinks } from "../constants/footer-menu";
-
 ---
 
-<div class="mb-0 bg-black">
-    <div class="container flex items-center justify-center flex-col">
-        <div class="mb-4">
-            <a href="/">
-              <img
-                src={whiteLogo}
-                alt="footer-logo"
-              />
-            </a>
-          </div>
-      <!-- <SocialLinks /> -->
-      <div class="my-4">
-        <ul class="flex items-center text-center gap-2 flex-col md:flex-row">
-          {navLinks.map((link) => {
+<div class="mb-0 bg-black py-8">
+  <div class="container flex flex-col items-center justify-center">
+    <div class="mb-4">
+      <a href="/">
+        <Image src={whiteLogo} alt="footer-logo" />
+      </a>
+    </div>
+    <!-- <SocialLinks /> -->
+    <div class="my-4">
+      <ul class="flex flex-col items-center gap-2 text-center md:flex-row">
+        {
+          navLinks.map((link) => {
             return (
-              <a
-                href={link.path}
-                class="text-white capitalize"
-              >
+              <a href={link.path} class="capitalize text-white">
                 {link.label}
               </a>
             );
-          })}
-        </ul>
-      </div>
-      <div>&copy; 2010 - {new Date().getFullYear()} The Velvet Cell</div>
+          })
+        }
+      </ul>
+    </div>
+    <div class="text-white">
+      &copy; 2010 - {new Date().getFullYear()} The Velvet Cell
     </div>
   </div>
+</div>

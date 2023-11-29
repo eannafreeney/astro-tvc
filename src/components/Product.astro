@@ -1,6 +1,7 @@
 ---
 import { slugify } from "../utils/common";
 import join from "lodash/join";
+import { Image } from 'astro:assets';
 import ProductBadge from "./ProductBadge.astro";
 
 const { product } = Astro.props;
@@ -13,14 +14,14 @@ const joinedArtists = [join(artist, " & ")];
 <article>
   <div class="group relative left-0 top-0">
     <a href={`/shop/${slugify(title)}`}>
-      <img
+      <Image
         src={cover[0]?.url}
         alt={title}
         width={cover[0]?.width}
         height={cover[0]?.height}
         class="relative left-0 top-0 rounded opacity-100 group-hover:opacity-0"
       />
-      <img
+      <Image
         src={cover[1]?.url}
         alt={title}
         width={cover[1]?.width}

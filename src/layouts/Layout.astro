@@ -1,7 +1,7 @@
 ---
-import {AnnouncementBar, Header, Footer} from "../components";
-const defaultDesc =
-  "A lightweight and minimalit Astro starter theme using Shopify with Svelte, Tailwind, and TypeScript.";
+import { AnnouncementBar, Header, Footer, CartDrawer } from "../components";
+import { ViewTransitions } from "astro:transitions";
+const defaultDesc = `The Velvet Cell is an independent publishing house with a focus on urbanism and architecture. We publish works by world-renown photographers such as Peter Bialobrzeski, Alexander Gronsky, Toshio Shibata and Greg Girard, as well as many up and coming photographers of interest.`;
 
 const { title, description = defaultDesc } = Astro.props;
 ---
@@ -21,9 +21,11 @@ const { title, description = defaultDesc } = Astro.props;
   <body>
     <AnnouncementBar />
     <Header />
+    <CartDrawer client:idle />
     <main>
       <slot />
     </main>
     <Footer />
+    <ViewTransitions />
   </body>
 </html>

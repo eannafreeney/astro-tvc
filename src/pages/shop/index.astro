@@ -1,0 +1,14 @@
+---
+import { getAllBooksByRelease } from "../../utils/utils";
+import Layout from "../../layouts/Layout.astro";
+import { ProductsContainer, Product, CollectionsLinks } from "../../components";
+
+const data = await getAllBooksByRelease();
+---
+
+<Layout>
+  <CollectionsLinks />
+  <ProductsContainer title="Shop">
+    {data.map((product, idx) => <Product product={product} key={idx} />)}
+  </ProductsContainer>
+</Layout>

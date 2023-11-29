@@ -1,0 +1,25 @@
+---
+import { getCollection } from "../../api/api";
+import {ProductsContainer, Product} from "../../components/";
+import Layout from "../../layouts/Layout.astro";
+
+const {handle} = Astro.params;
+const data = await getCollection(handle)
+
+const titleMap = {
+  funding: "Funding",
+  "city-diaries": "City Diaries"
+}
+
+
+---
+
+<Layout>
+  <ProductsContainer title={titleMap[handle]}>
+              {data.map((product) => (
+                <Product product={product} />
+              ))}
+            </ProductsContainer>
+        
+  </Layout>
+

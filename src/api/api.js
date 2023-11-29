@@ -1,6 +1,6 @@
 import Airtable from "airtable";
 import { sortByLatestRelease } from "../utils/utils";
-import {slugify} from '../utils/common'
+import { slugify } from "../utils/common";
 import { OVERVIEW_FIELDS, getOverview } from "./transformers";
 
 const airtableBaseId = import.meta.env.PRIVATE_CATEALOGUE_BASE_ID;
@@ -12,6 +12,12 @@ Airtable.configure({
   apiKey,
 });
 
+const isRecordAvailable = (record) => record.get("status") === "Available";
+
+/**
+ * Fetch books from airtable
+ * @returns
+ */
 export const getAvailableBooks = async () => {
   const base = Airtable.base(airtableBaseId);
 
@@ -24,14 +30,8 @@ export const getAvailableBooks = async () => {
       })
       .eachPage(
         function page(records, fetchNextPage) {
-          records?.forEach((record) => {
-            try {
-              if (record.get("status") === "Available") {
-                availableBooks.push(getOverview(record.fields));
-              }
-            } catch (e) {
-              console.log(e);
-            }
+          records?.filter(isRecordAvailable).forEach((record) => {
+            availableBooks.push(getOverview(record.fields));
           });
 
           fetchNextPage();
@@ -43,7 +43,7 @@ export const getAvailableBooks = async () => {
             return;
           }
 
-          resolve(availableBooks.sort(sortByLatestRelease));
+          resolve(availableBooks);
         }
       );
   });
@@ -59,13 +59,9 @@ export const getBookBySKU = async (SKU) => {
       .select()
       .eachPage(
         function page(records, fetchNextPage) {
-          records?.forEach((record) => {
-            try {
-              if (record.get("SKU") === SKU) {
-                book = record.fields;
-              }
-            } catch (e) {
-              console.log(e);
+          records?.filter(isRecordAvailable).forEach((record) => {
+            if (record.get("SKU") === SKU) {
+              book = record.fields;
             }
           });
 
@@ -83,7 +79,6 @@ export const getBookBySKU = async (SKU) => {
   });
 };
 
-
 export const getCollection = async (handle, limit) => {
   const base = Airtable.base(airtableBaseId);
 
@@ -94,18 +89,14 @@ export const getCollection = async (handle, limit) => {
       .select()
       .eachPage(
         function page(records, fetchNextPage) {
-          records?.forEach((record) => {
-            try {
-              if (
-                record
-                  .get("categories")
-                  .map((cat) => slugify(cat))
-                  .includes(handle)
-              ) {
-                books.push(getOverview(record.fields));
-              }
-            } catch (e) {
-              console.log(e);
+          records?.filter(isRecordAvailable).forEach((record) => {
+            if (
+              record
+                .get("categories")
+                .map((cat) => slugify(cat))
+                .includes(handle)
+            ) {
+              books.push(getOverview(record.fields));
             }
           });
 
@@ -122,6 +113,42 @@ export const getCollection = async (handle, limit) => {
           const finalBooks = limit ? sortedBooks.slice(0, limit) : sortedBooks;
 
           resolve(finalBooks);
+        }
+      );
+  });
+};
+
+export const getCollectionByArtist = async (handle, limit) => {
+  const base = Airtable.base(airtableBaseId);
+
+  return new Promise((resolve, reject) => {
+    let books = [];
+
+    base(baseName)
+      .select()
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records?.filter(isRecordAvailable).forEach((record) => {
+            if (
+              record
+                .get("artist")
+                .map((artist) => slugify(artist))
+                .includes(handle)
+            ) {
+              books.push(getOverview(record.fields));
+            }
+          });
+
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            reject(err);
+            return;
+          }
+
+          resolve(books);
         }
       );
   });

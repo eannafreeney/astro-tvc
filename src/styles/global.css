@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Sohne-Buch";
+  src: local("Sohne-Buch"), url(/fonts/Sohne-Buch.otf) format("opentype");
+}
+@font-face {
+  font-family: "Sohne-Light";
+  src: local("Sohne-Light"), url(/fonts/Sohne-Light.otf) format("opentype");
+}
+@font-face {
+  font-family: "Sohne-Kraftig";
+  src: local("Sohne-Kraftig"), url(/fonts/Sohne-Kraftig.otf) format("opentype");
+}
+
 @layer utilities {
   @variants responsive {
     /* Hide scrollbar for Chrome, Safari, and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
-
 
     /* Hide scrollbar for IE, Edge, and Firefox */
     .no-scrollbar {
@@ -31,10 +43,14 @@
     @apply flex-1;
   }
 
+  p {
+    @apply pb-4;
+  }
+
   .button {
-    @apply flex items-center justify-center rounded-lg;
-    @apply bg-gradient-to-br from-emerald-900 via-emerald-800  to-emerald-600;
-    @apply py-3 px-8 text-base font-medium text-white;
+    @apply flex w-full items-center justify-center rounded-lg;
+    @apply bg-primary-100 bg-gradient-to-br;
+    @apply px-8 py-3 text-base font-medium text-white;
     @apply transition hover:opacity-80;
     @apply focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1;
     @apply disabled:cursor-not-allowed disabled:opacity-60;

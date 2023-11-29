@@ -86,7 +86,6 @@ export async function addCartItem(item: { id: string; quantity: number }) {
     }
   } else {
     const cartData = await addCartLines(cartId, item.id, item.quantity);
-
     if (cartData) {
       cart.set({
         ...cart.get(),

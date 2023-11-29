@@ -1,52 +1,47 @@
 ---
-import { getProductByID } from "./../../utils/shopify";
+import { getProductByID } from "../../utils/shopify";
 import { getBookBySKU } from "../../api/api";
 import { setCache } from "../../utils/cache";
 import { books } from "../../constants/ids";
 
 import Layout from "../../layouts/Layout.astro";
-import {ImageContainer, TextContainer} from '../../components/Product'
+import { ImageContainer, TextContainer } from "../../components/Product";
 
 const { handle } = Astro.params;
-const { ID, SKU } = books[handle];
+console.log(handle);
+
+const x = books[handle];
+
+const { ID, SKU } = x;
 
 const headers = Astro.request.headers;
 const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
-const shopifyProduct = await getProductByID({
-  id: `gid://shopify/Product/${ID}` || "",
-  buyerIP: ip,
-});
 
-const airtableData = await getBookBySKU(SKU);
+const [shopifyProduct, airtableData] = await Promise.all([
+  getProductByID({
+    id: `gid://shopify/Product/${ID}` || "",
+    buyerIP: ip,
+  }),
+  getBookBySKU(SKU),
+]);
 
 if (!shopifyProduct) {
   Astro.response.status = 404;
 }
 
-const firstVariant = shopifyProduct?.variants.nodes[0];
-const variants = shopifyProduct?.variants.nodes;
-
 setCache.short(Astro);
 ---
 
 <Layout>
-  <section
-    class="md:grid md:grid-cols-[3fr,2fr] md:gap-4"
-  >
+  <section class="md:grid md:grid-cols-[3fr,2fr] md:gap-4">
     <div>
       <ImageContainer data={airtableData} />
     </div>
     <div>
       <TextContainer
-      airtableData={airtableData}
-      shopifyProduct={shopifyProduct}
-        
+        airtableData={airtableData}
+        shopifyProduct={shopifyProduct}
       />
     </div>
   </section>
 </Layout>
-
-<!-- <AddToCartForm client:load variants={variants} /> -->
-
-
-

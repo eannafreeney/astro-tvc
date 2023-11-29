@@ -1,27 +1,28 @@
 ---
-import { getCollection } from "../api/api";
+import { getCollectionByRelease } from "../utils/utils";
 import { getHomepageCollections } from "../utils/common";
-import ProductsContainer from "../components/ProductsContainer.astro";
-import Product from "../components/Product.astro";
+import { CollectionsLinks, ProductsContainer, Product } from "../components";
 import Layout from "../layouts/Layout.astro";
 
 const data = await Promise.all([
-  getCollection("recent", 10),
-  getCollection("city-diaries", 10),
+  getCollectionByRelease("recent", 2),
+  getCollectionByRelease("city-diaries", 2),
+  getCollectionByRelease("featured", 2),
 ]);
 const collections = getHomepageCollections(data);
-
 ---
 
 <Layout>
   <!-- <Hero slides={data.slides.nodes} /> -->
-  <!-- <CollectionsLinks /> -->
+  <CollectionsLinks />
 
-    {collections.map(({ title, data, link }) => (
-          <ProductsContainer title={title} link={link}>
-            {data.map((product) => (
-              <Product product={product} />
-            ))}
-          </ProductsContainer>
+  {
+    collections.map(({ title, data, link }) => (
+      <ProductsContainer title={title} link={link}>
+        {data.map((product) => (
+          <Product product={product} />
         ))}
+      </ProductsContainer>
+    ))
+  }
 </Layout>

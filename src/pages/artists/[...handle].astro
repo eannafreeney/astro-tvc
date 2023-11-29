@@ -1,0 +1,14 @@
+---
+import { getCollectionByArtist } from "../../api/api";
+import { ProductsContainer, Product } from "../../components/";
+import Layout from "../../layouts/Layout.astro";
+
+const { handle } = Astro.params;
+const data = await getCollectionByArtist(handle);
+---
+
+<Layout>
+  <ProductsContainer>
+    {data.map((product) => <Product product={product} />)}
+  </ProductsContainer>
+</Layout>

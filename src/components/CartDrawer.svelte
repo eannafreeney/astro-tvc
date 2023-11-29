@@ -74,7 +74,7 @@
                   class="text-2xl flex gap-4 items-center font-bold text-zinc-800"
                   id="slide-over-title"
                 >
-                  Your cart
+                  Your Cart
                   {#if $isCartUpdating}
                     <svg
                       class="animate-spin -ml-1 mr-3 h-4 w-4"

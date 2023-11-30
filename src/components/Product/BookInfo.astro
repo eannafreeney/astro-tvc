@@ -1,15 +1,17 @@
 ---
-const {title, artists} = Astro.props
+const { title, artists } = Astro.props;
 ---
 
 <div class="container">
-    <div class="">{title}</div>
-    <ul class="">
-      {artists.map((artist) => (
+  <div class="">{title}</div>
+  <ul class="">
+    {
+      artists.map((artist) => (
         <a href={`/artists/${artist}`}>
           <li class="">{artist}</li>
         </a>
-      ))}
-    </ul>
-    <!-- <div>{getPrice(categories, price, comparePrice)}</div> -->
-  </div>
+      ))
+    }
+  </ul>
+  <!-- <div>{getPrice(categories, price, comparePrice)}</div> -->
+</div>

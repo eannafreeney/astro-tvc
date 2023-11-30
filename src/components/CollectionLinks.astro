@@ -4,7 +4,7 @@ import { data as links } from "../constants/collections";
 
 <div class="relative overflow-hidden pt-4">
   <div
-    class="container flex flex-nowrap justify-start overflow-y-auto pl-6 md:justify-end"
+    class="no-scrollbar container flex flex-nowrap justify-start overflow-y-auto pl-6 md:justify-end"
   >
     {
       links.map((link) => (
@@ -19,8 +19,14 @@ import { data as links } from "../constants/collections";
       ))
     }
   </div>
-  <div
+  <div class="z-2 pointer-events-none absolute bottom-0 left-0 right-0 top-0">
+    <div
+      class="h-full bg-gradient-to-l from-white via-transparent to-transparent"
+    >
+    </div>
+  </div>
+  <!-- <div
     class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10 md:hidden"
   >
-  </div>
+  </div> -->
 </div>

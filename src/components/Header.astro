@@ -1,22 +1,24 @@
 ---
-import {Logo, Navigation} from "./index";
-import logo from '../assets/images/logo.png'
-
+import { Logo, Navigation, MenuButton, MobileLogo } from "./index";
+import logo from "../assets/images/logo.png";
 import CartIcon from "./CartIcon.svelte";
 ---
 
-<header class="sticky top-0 z-40 border-double border-b border-black">
+<header class="sticky top-0 z-40 border-b-2 border-black">
   <div class="border-b bg-white/70 py-3 backdrop-blur-2xl">
     <nav class="container flex items-center justify-between">
       <div class="flex items-center gap-8">
-        <a href="/">
-          <span class="sr-only">Logo</span>
-          <Logo {logo}/>
+        <a href="/" class="hidden md:block">
+          <Logo {logo} />
+        </a>
+        <a href="/" class="block md:hidden">
+          <MobileLogo />
         </a>
         <Navigation />
       </div>
-      <div class="justify-self-end">
-          <CartIcon client:load />
+      <div class="flex items-center gap-2">
+        <MenuButton client:load />
+        <CartIcon client:load />
       </div>
     </nav>
   </div>

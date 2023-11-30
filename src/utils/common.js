@@ -32,6 +32,22 @@ export const slugify = (string) => {
   );
 };
 
-export const calcPercentageSold = (edition, inventory) => {
-  return ((edition - inventory) / edition) * 100;
-};
+/**
+ * Unslugifies a slugified string.
+ *
+ * @param {string} slug slugified string.
+ * @returns {string} un-slugified string.
+ */
+export const unslugify = (slug) =>
+  slug
+    .replace(/\-/g, " ")
+    .replace(
+      /\w\S*/g,
+      (text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+    );
+
+export const calcPercentageSold = (edition, inventory) =>
+  Math.round(((edition - inventory) / edition) * 100);
+
+export const getPrice = (product) =>
+  product.comparePrice ? product.comparePrice : product.price;

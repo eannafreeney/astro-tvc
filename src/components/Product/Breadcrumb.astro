@@ -1,13 +1,12 @@
 ---
-import { slugify } from '../../utils/common';
+import { slugify } from "../../utils/common";
 export interface Props {
   title: string;
 }
 const { data } = Astro.props as Props;
 ---
 
-
-<nav aria-label=" Breadcrumb">
+<nav aria-label="Breadcrumb">
   <ol role="list" class="flex items-center gap-1 text-sm text-gray-600">
     <li>
       <a href="/" class="block text-gray-800 transition hover:text-gray-700">
@@ -45,7 +44,10 @@ const { data } = Astro.props as Props;
     </li>
 
     <li>
-      <div class="block transition hover:text-gray-700 hover:underline"><a href={`/collections/${slugify(data.categories[0].toLowerCase())}`}>{data.categories[0]}</a></div>
+      <div class="block transition hover:text-gray-700 hover:underline">
+        <a href={`/collections/${slugify(data.categories[0].toLowerCase())}`}
+          >{data.categories[0]}</a>
+      </div>
     </li>
 
     <li>

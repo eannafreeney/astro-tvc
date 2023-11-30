@@ -1,14 +1,15 @@
 ---
-import { getCollectionByArtist } from "../../api/api";
+import { getArtistCollectionByRelease } from "../../utils/airtable";
 import { ProductsContainer, Product } from "../../components/";
 import Layout from "../../layouts/Layout.astro";
+import { unslugify } from "../../utils/common";
 
 const { handle } = Astro.params;
-const data = await getCollectionByArtist(handle);
+const data = await getArtistCollectionByRelease(handle);
 ---
 
 <Layout>
-  <ProductsContainer>
+  <ProductsContainer title={unslugify(handle)}>
     {data.map((product) => <Product product={product} />)}
   </ProductsContainer>
 </Layout>

@@ -3,16 +3,15 @@ import { getProductByID } from "../../utils/shopify";
 import { getBookBySKU } from "../../api/api";
 import { setCache } from "../../utils/cache";
 import { books } from "../../constants/ids";
-
 import Layout from "../../layouts/Layout.astro";
-import { ImageContainer, TextContainer } from "../../components/Product";
+import {
+  ImageContainer,
+  TextContainer,
+  Breadcrumb,
+} from "../../components/Product";
 
 const { handle } = Astro.params;
-console.log(handle);
-
-const x = books[handle];
-
-const { ID, SKU } = x;
+const { ID, SKU } = books[handle];
 
 const headers = Astro.request.headers;
 const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
@@ -35,6 +34,9 @@ setCache.short(Astro);
 <Layout>
   <section class="md:grid md:grid-cols-[3fr,2fr] md:gap-4">
     <div>
+      <div class="container py-4 sm:hidden">
+        <Breadcrumb data={airtableData} />
+      </div>
       <ImageContainer data={airtableData} />
     </div>
     <div>

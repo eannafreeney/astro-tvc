@@ -1,5 +1,9 @@
 export const data = [
   {
+    path: "/collections/sale",
+    label: "sale",
+  },
+  {
     path: "/collections/final-copies",
     label: "final copies",
   },
@@ -12,15 +16,10 @@ export const data = [
     label: "city diaries",
   },
   {
-    path: "/collections/under-30",
-    label: "under €30",
-  },
-  {
     path: "/collections/featured",
     label: "featured",
   },
   {
-    id: 5,
     path: "/collections/editions",
     label: "editions",
   },

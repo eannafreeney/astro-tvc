@@ -29,13 +29,15 @@
 </script>
 
 
-<form on:submit|preventDefault={(e) => addToCart(e)} class="my-4">
+<form on:submit|preventDefault={(e) => addToCart(e)} class="container">
   {#if hasVariants}
-   <select on:change={handleVariantChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-primary-100 focus:border-primary-100 block w-fit p-2.5 mb-2">
-    {#each variants as variant (variant.id)}
+  <div class="border border-gray-400 cursor-pointer px-2 py-1 relative w-fit">
+    <select on:change={handleVariantChange} class="bg-transparent  border-none text-black cursor-pointer h-10 m-0 w-full focus:primary-100">
+      {#each variants as variant (variant.id)}
       <option value={variant.title}>{variant.title}</option>
-    {/each}
-  </select>
+      {/each}
+    </select>
+  </div>
   {/if}
 
 

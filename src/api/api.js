@@ -13,6 +13,8 @@ Airtable.configure({
 });
 
 const isRecordAvailable = (record) => record.get("status") === "Available";
+const hasCopiesForSale = (record) =>
+  !record.get("categories").includes("Sold Out");
 
 /**
  * Fetch books from airtable
@@ -30,9 +32,12 @@ export const getAvailableBooks = async () => {
       })
       .eachPage(
         function page(records, fetchNextPage) {
-          records?.filter(isRecordAvailable).forEach((record) => {
-            availableBooks.push(getOverview(record.fields));
-          });
+          records
+            ?.filter(isRecordAvailable)
+            .filter(hasCopiesForSale)
+            .forEach((record) => {
+              availableBooks.push(getOverview(record.fields));
+            });
 
           fetchNextPage();
         },
@@ -118,7 +123,7 @@ export const getCollection = async (handle, limit) => {
   });
 };
 
-export const getCollectionByArtist = async (handle, limit) => {
+export const getArtistCollection = async (handle) => {
   const base = Airtable.base(airtableBaseId);
 
   return new Promise((resolve, reject) => {

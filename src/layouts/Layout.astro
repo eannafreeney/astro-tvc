@@ -1,5 +1,11 @@
 ---
-import { AnnouncementBar, Header, Footer, CartDrawer } from "../components";
+import {
+  AnnouncementBar,
+  Header,
+  Footer,
+  CartDrawer,
+  MobileMenu,
+} from "../components";
 import { ViewTransitions } from "astro:transitions";
 const defaultDesc = `The Velvet Cell is an independent publishing house with a focus on urbanism and architecture. We publish works by world-renown photographers such as Peter Bialobrzeski, Alexander Gronsky, Toshio Shibata and Greg Girard, as well as many up and coming photographers of interest.`;
 
@@ -22,6 +28,7 @@ const { title, description = defaultDesc } = Astro.props;
     <AnnouncementBar />
     <Header />
     <CartDrawer client:idle />
+    <MobileMenu client:idle />
     <main>
       <slot />
     </main>

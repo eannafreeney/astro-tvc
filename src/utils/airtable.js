@@ -3,6 +3,7 @@ import {
   getAvailableBooks,
   getCollection,
   getAirtableSlides,
+  getTagCollection,
 } from "../api/api";
 
 export const sortByLatestRelease = (a, b) => {
@@ -16,6 +17,11 @@ export const getAllBooksByRelease = async () => {
 
 export const getCollectionByRelease = async (handle, limit) => {
   const data = await getCollection(handle, limit);
+  return data.sort(sortByLatestRelease);
+};
+
+export const getTagCollectionByRelease = async (handle) => {
+  const data = await getTagCollection(handle);
   return data.sort(sortByLatestRelease);
 };
 

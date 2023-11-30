@@ -121,6 +121,42 @@ export const getCollection = async (handle, limit) => {
   });
 };
 
+export const getTagCollection = async (handle, limit) => {
+  const base = Airtable.base(airtableBaseId);
+
+  return new Promise((resolve, reject) => {
+    let books = [];
+
+    base(baseName)
+      .select()
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records?.filter(isRecordAvailable).forEach((record) => {
+            if (
+              record
+                .get("tags")
+                .map((cat) => slugify(cat))
+                .includes(handle)
+            ) {
+              books.push(getOverview(record.fields));
+            }
+          });
+
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            reject(err);
+            return;
+          }
+
+          resolve(books);
+        }
+      );
+  });
+};
+
 export const getArtistCollection = async (handle) => {
   const base = Airtable.base(airtableBaseId);
 

@@ -1,4 +1,6 @@
 ---
+import { unslugify } from "../utils/common";
+
 const categoryMap = {
   sale: "bg-purple-400",
   funding: "bg-green-400",
@@ -18,7 +20,7 @@ const category = categories.find((cat) =>
     <div
       class={`absolute right-0 top-0 block rounded-bl-lg px-2 py-1 text-xs uppercase tracking-wider text-white ${categoryMap[category]}`}
     >
-      {category}
+      {unslugify(category)}
     </div>
   ) : null
 }

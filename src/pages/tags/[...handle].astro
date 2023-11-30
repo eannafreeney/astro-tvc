@@ -1,5 +1,5 @@
 ---
-import { getArtistCollectionByRelease } from "../../utils/airtable";
+import { getTagCollectionByRelease } from "../../utils/airtable";
 import { ProductsContainer, Product } from "../../components/";
 import Layout from "../../layouts/Layout.astro";
 import { unslugify } from "../../utils/common";
@@ -7,18 +7,18 @@ import { unslugify } from "../../utils/common";
 export async function getStaticPaths() {
   return [
     {
-      params: { handle: "peter-bialobrzeski" },
+      params: { handle: "architecture" },
     },
   ];
 }
 
 const { handle } = Astro.params;
-const data = await getArtistCollectionByRelease(handle);
+const data = await getTagCollectionByRelease(handle);
 export const prerender = true;
 ---
 
 <Layout>
-  <ProductsContainer title={`Books by ${unslugify(handle)}`}>
+  <ProductsContainer title={`#${unslugify(handle)}`}>
     {data.map((product) => <Product product={product} />)}
   </ProductsContainer>
 </Layout>

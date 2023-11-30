@@ -1,6 +1,7 @@
 ---
 import { getCollectionByRelease } from "../../utils/airtable";
 import { unslugify } from "../../utils/common";
+import { data as collections } from "../../constants/collections";
 import {
   ProductsContainer,
   Product,
@@ -8,8 +9,18 @@ import {
 } from "../../components/";
 import Layout from "../../layouts/Layout.astro";
 
+export async function getStaticPaths() {
+  return collections.map((col) => {
+    return {
+      params: { handle: col.label },
+    };
+  });
+}
+
 const { handle } = Astro.params;
 const data = await getCollectionByRelease(handle);
+
+export const prerender = true;
 ---
 
 <Layout>

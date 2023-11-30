@@ -1,6 +1,12 @@
 ---
-
 Astro.response.status = 404;
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
 ---
 
-<div>Nothing Found</div>
+<Layout>
+  <div class="flex items-center justify-center">
+    <div class="grow">Nothing Found</div>
+  </div>
+</Layout>

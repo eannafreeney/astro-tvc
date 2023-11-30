@@ -1,59 +1,64 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import aboutImage from "../assets/images/hero.jpg";
+export const prerender = true;
 ---
 
 <Layout>
-  <div>
-    <p class="w-2/4">
-      The Velvet Cell is an independent photobook publishing house based in
-      Berlin, Germany, run by Éanna de Fréine and Ricardo Nunes. Established by
-      Éanna de Fréine in 2011, we wanted to create a publishing house that
-      connects new and established authors to a wider audience through the
-      medium of beautifully designed editions. We are rooted primarily in the
-      themes of modernity, urbanisation and the man-altered world – using the
-      photobook as a medium for this conversation.
-    </p>
-    <p>
-      Our approach is single-minded: to create beautiful, interesting and
-      informative books that bring delight to people, an help them see the world
-      in new ways. In the 10 years we’ve been around, we have become known as a
-      source of quality photography project s– by both established and
-      up-and-coming artists. We pride ourselves on the care and thoughtfulness
-      that goes into every stage of the book-making process, and strive to
-      reflect the diversity of visual arts publishing today.
-    </p>
-
-    <h4>Submissions</h4>
-    <p>
-      We welcome submissions to The Velvet Cell. Please take the time become
-      familiar with our catalogue to get an idea whether or not your project
-      would be a good fit for us. We are primarily interested in photographic
-      work that explores, documents, critiques the man-made world in some way.
-      We especially like projects that come with text that help to give the
-      overall project context.
-    </p>
-    <p>
-      We accept unsolicited proposals, via our{" "}
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSfrxYL9GXoZFD-QOAbSt1iMjvQUFFezpuKzhi2X9H0iTX4teQ/viewform"
-        target="_blank"
-        rel="noreferrer"
-      >
-        submissions form
-      </a>
-      . Please note that while all submissions are carefully reviewed, this is a
-      time-intensive process and unfortunately we are not able to respond to all
-      who submit work. Thank you for your understanding!
-    </p>
-    <p>
-      Please be aware before submitting work that, chances are financial aid
-      will be needed to make the book a reality. This may in the form of a
-      grant, pre-ordered copies or crowdfunding campaigns. Unfortunately this is
-      the reality of the situation – photobooks are quite expensive to make, and
-      market for them is quite small. This is in no means a reflection of the
-      work itself.
-    </p>
-    <h4>Contact</h4>
-    <p>For direct enquiries please contact us at contact@thevelvetcell.com</p>
+  <div class="grid place-items-center">
+    <div class="w-2/4 py-4">
+      <Image src={aboutImage} alt="The Velvet Cell" width="500" height="500" />
+      <p>
+        The Velvet Cell is an independent photobook publishing house based in
+        Berlin, Germany, run by Éanna de Fréine and Ricardo Nunes. Established
+        by Éanna de Fréine in 2011, we wanted to create a publishing house that
+        connects new and established authors to a wider audience through the
+        medium of beautifully designed editions. We are rooted primarily in the
+        themes of modernity, urbanisation and the man-altered world – using the
+        photobook as a medium for this conversation.
+      </p>
+      <p>
+        Our approach is single-minded: to create beautiful, interesting and
+        informative books that bring delight to people, an help them see the
+        world in new ways. In the 10 years we’ve been around, we have become
+        known as a source of quality photography project s– by both established
+        and up-and-coming artists. We pride ourselves on the care and
+        thoughtfulness that goes into every stage of the book-making process,
+        and strive to reflect the diversity of visual arts publishing today.
+      </p>
+      <h3>Submissions</h3>
+      <p>
+        We welcome submissions to The Velvet Cell. Please take the time become
+        familiar with our catalogue to get an idea whether or not your project
+        would be a good fit for us. We are primarily interested in photographic
+        work that explores, documents, critiques the man-made world in some way.
+        We especially like projects that come with text that help to give the
+        overall project context.
+      </p>
+      <p>
+        We accept unsolicited proposals, via our{" "}
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfrxYL9GXoZFD-QOAbSt1iMjvQUFFezpuKzhi2X9H0iTX4teQ/viewform"
+          target="_blank"
+          rel="noreferrer"
+        >
+          submissions form
+        </a>
+        . Please note that while all submissions are carefully reviewed, this is
+        a time-intensive process and unfortunately we are not able to respond to
+        all who submit work. Thank you for your understanding!
+      </p>
+      <p>
+        Please be aware before submitting work that, chances are financial aid
+        will be needed to make the book a reality. This may in the form of a
+        grant, pre-ordered copies or crowdfunding campaigns. Unfortunately this
+        is the reality of the situation – photobooks are quite expensive to
+        make, and market for them is quite small. This is in no means a
+        reflection of the work itself.
+      </p>
+      <h3>Contact</h3>
+      <p>For direct enquiries please contact us at contact@thevelvetcell.com</p>
+    </div>
   </div>
 </Layout>

@@ -11,11 +11,15 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
   adapter: vercel(),
-  integrations: [tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), svelte(), react()]
+  integrations: [
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      },
+    }),
+    svelte(),
+    react(),
+  ],
 });

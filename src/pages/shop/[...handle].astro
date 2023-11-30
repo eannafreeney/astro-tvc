@@ -1,7 +1,7 @@
 ---
 import { getProductByID } from "../../utils/shopify";
 import { getBookBySKU } from "../../api/api";
-import { setCache } from "../../utils/cache";
+import { status } from "../../utils/common";
 import { books } from "../../constants/ids";
 import Layout from "../../layouts/Layout.astro";
 import {
@@ -10,8 +10,27 @@ import {
   Breadcrumb,
 } from "../../components/Product";
 
+export async function getStaticPaths() {
+  return Object.keys(books).map((slug) => {
+    return {
+      params: { handle: slug },
+    };
+  });
+}
+
 const { handle } = Astro.params;
-const { ID, SKU } = books[handle];
+const info = books[handle];
+
+if (!info) {
+  const error = await fetch(`${Astro.url}/404`);
+  return new Response(error.body, {
+    headers: error.headers,
+    status: 404,
+    statusText: "Not Found",
+  });
+}
+
+const { ID, SKU } = info;
 
 const headers = Astro.request.headers;
 const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
@@ -24,11 +43,7 @@ const [shopifyProduct, airtableData] = await Promise.all([
   getBookBySKU(SKU),
 ]);
 
-if (!shopifyProduct) {
-  Astro.response.status = 404;
-}
-
-setCache.short(Astro);
+export const prerender = false;
 ---
 
 <Layout>

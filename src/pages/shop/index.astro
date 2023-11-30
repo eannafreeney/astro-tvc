@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { ProductsContainer, Product, CollectionsLinks } from "../../components";
 
 const data = await getAllBooksByRelease();
+export const prerender = true;
 ---
 
 <Layout>

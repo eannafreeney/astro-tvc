@@ -1,0 +1,58 @@
+---
+const { description, bio } = Astro.props;
+const accordions = [
+  { title: "Description", content: description },
+  { title: "Artist Bio", content: bio },
+];
+// const accordions = [
+//   {
+//     title: "Shipping",
+//     icon: "truck",
+//     content:
+//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam possimus fuga dolor rerum dicta, ipsum laboriosam est totam iusto alias incidunt cum tempore aliquid aliquam error quisquam ipsam asperiores! Iste?",
+//   },
+//   {
+//     title: "Care instructions",
+//     icon: "care",
+//     content:
+//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam possimus fuga dolor rerum dicta, ipsum laboriosam est totam iusto alias incidunt cum tempore aliquid aliquam error quisquam ipsam asperiores! Iste?",
+//   },
+// ];
+---
+
+<div class="container grid md:hidden">
+  {
+    accordions.map((accordion, index) => (
+      <details
+        class:list={[
+          "group",
+          "border-t",
+          { "border-b": index === accordions.length - 1 },
+        ]}
+      >
+        <summary class="flex cursor-pointer items-center justify-between py-3 font-bold ">
+          <div class="flex items-center gap-2 font-SohneBuch">
+            {accordion.title}
+          </div>
+          <span class="transition group-open:rotate-180">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-4 w-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </span>
+        </summary>
+        <div class="pb-3 font-SohneBuch">{accordion.content}</div>
+      </details>
+    ))
+  }
+</div>

@@ -1,5 +1,4 @@
 import Airtable from "airtable";
-import { sortByLatestRelease } from "../utils/utils";
 import { slugify } from "../utils/common";
 import { OVERVIEW_FIELDS, getOverview } from "./transformers";
 
@@ -114,8 +113,7 @@ export const getCollection = async (handle, limit) => {
             return;
           }
 
-          const sortedBooks = books.sort(sortByLatestRelease);
-          const finalBooks = limit ? sortedBooks.slice(0, limit) : sortedBooks;
+          const finalBooks = limit ? books.slice(0, limit) : books;
 
           resolve(finalBooks);
         }
@@ -154,6 +152,35 @@ export const getArtistCollection = async (handle) => {
           }
 
           resolve(books);
+        }
+      );
+  });
+};
+
+export const getAirtableSlides = async () => {
+  const base = Airtable.base(airtableBaseId);
+
+  return new Promise((resolve, reject) => {
+    let slides = [];
+
+    base("Slides")
+      .select()
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records?.forEach((record) => {
+            slides.push(record.fields);
+          });
+
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            reject(err);
+            return;
+          }
+
+          resolve(slides);
         }
       );
   });

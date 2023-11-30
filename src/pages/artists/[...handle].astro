@@ -6,6 +6,7 @@ import { unslugify } from "../../utils/common";
 
 const { handle } = Astro.params;
 const data = await getArtistCollectionByRelease(handle);
+export const prerender = true;
 ---
 
 <Layout>

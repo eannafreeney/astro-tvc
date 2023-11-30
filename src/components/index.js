@@ -12,12 +12,15 @@ import MobileMenu from "./MobileMenu.svelte";
 import MenuButton from "./MenuButton.svelte";
 import MobileLogo from "./MobileLogo.astro";
 import Money from "./Money.svelte";
+import Accordions from "./Product/Accordions.astro";
 import SocialLinks from "./SocialLinks.astro";
+import Subtotal from "./Subtotal.svelte";
 
 export {
   Product,
   ProductsContainer,
   ProductBadge,
+  Accordions,
   AnnouncementBar,
   Logo,
   Navigation,
@@ -30,4 +33,5 @@ export {
   MobileLogo,
   Money,
   SocialLinks,
+  Subtotal,
 };

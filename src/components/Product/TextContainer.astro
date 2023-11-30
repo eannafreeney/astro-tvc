@@ -1,10 +1,10 @@
 ---
 import { marked } from "marked";
 import { Image } from "astro:assets";
-import { slugify, calcPercentageSold, getPrice } from "../../utils/common";
+import { slugify, calcPercentageSold } from "../../utils/common";
 import { AddToCartForm, Breadcrumb } from "../Product";
 import ImageGallery from "../Product/ImageGallery.astro";
-import { Money } from "../index";
+import { Money, Accordions } from "../index";
 
 const { shopifyProduct, airtableData } = Astro.props;
 const variants = shopifyProduct?.variants.nodes;
@@ -20,12 +20,14 @@ const percentageFunded = calcPercentageSold(
 );
 ---
 
-<section class="my-4 flex flex-col gap-3">
+<section class="my-4 flex flex-col gap-4 md:gap-3">
   <div class="container hidden sm:block">
     <Breadcrumb data={airtableData} />
   </div>
   <div class="container">
-    <h3 class="font-SohneKraftig text-2xl leading-7">{airtableData.title}</h3>
+    <h3 class="break-words font-SohneKraftig text-2xl leading-7">
+      {airtableData.title}
+    </h3>
     <h2 class="font-SohneBuch text-xl">
       {
         airtableData.artist.map((artist) => (
@@ -42,18 +44,7 @@ const percentageFunded = calcPercentageSold(
     {isFunding && <span>{`/ ${percentageFunded}% Funded`}</span>}
   </div>
   <AddToCartForm client:load variants={variants} />
-  <div>
-    <a class="container rounded border p-2 sm:hidden" href="#gallery"
-      >View Images</a
-    >
-    {
-      !!printImage && (
-        <a class="container rounded border p-2 sm:hidden" href="#print">
-          View Signed Print
-        </a>
-      )
-    }
-  </div>
+  <Accordions description={airtableData.description} bio={airtableData.bio} />
   {
     isFunding && (
       <div class="container">
@@ -64,14 +55,13 @@ const percentageFunded = calcPercentageSold(
       </div>
     )
   }
-  <div
-    class="container font-SohneBuch"
-    set:html={marked.parse(airtableData.description)}
-  />
-  <div
-    class="container font-SohneBuch"
-    set:html={marked.parse(airtableData.bio)}
-  />
+  <div class="container hidden md:block">
+    <div
+      class="font-SohneBuch"
+      set:html={marked.parse(airtableData.description)}
+    />
+    <div class="font-SohneBuch" set:html={marked.parse(airtableData.bio)} />
+  </div>
   <div>
     <ul class="container mb-2 font-SohneBuch">
       <li class="text-sm text-gray-500">
@@ -100,14 +90,11 @@ const percentageFunded = calcPercentageSold(
       ))
     }
   </div>
-  <div class="sm:hidden" id="gallery">
-    <div class="text-md font-SohneBuch">Book Details:</div>
-    <ImageGallery images={airtableData.gallery} alt={airtableData.title} />
-  </div>
   {
     !!printImage && (
-      <div class="container mb-2 " id="print">
-        <h3 class="font-SohneBuch text-lg">Signed Print Details</h3>
+      <div class="container" id="print">
+        <h3 class="pb-2 font-SohneKraftig text-lg">Signed Print Details</h3>
+        <p>{airtableData["print description"]}</p>
         <Image
           src={printImage.url}
           alt="Print Image"
@@ -117,4 +104,7 @@ const percentageFunded = calcPercentageSold(
       </div>
     )
   }
+  <div class="sm:hidden" id="gallery">
+    <ImageGallery images={airtableData.gallery} alt={airtableData.title} />
+  </div>
 </section>

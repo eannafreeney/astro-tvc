@@ -51,3 +51,11 @@ export const calcPercentageSold = (edition, inventory) =>
 
 export const getPrice = (product) =>
   product.comparePrice ? product.comparePrice : product.price;
+
+export async function status(status, url) {
+  const res = await fetch(url);
+  return new Response(res.body, {
+    headers: res.headers,
+    status,
+  });
+}

@@ -3,17 +3,19 @@ import { getCollectionByRelease } from "../utils/airtable";
 import { getHomepageCollections } from "../utils/common";
 import { CollectionsLinks, ProductsContainer, Product } from "../components";
 import Layout from "../layouts/Layout.astro";
+import Slides from "../components/Slides.astro";
 
 const data = await Promise.all([
-  getCollectionByRelease("recent", 2),
-  getCollectionByRelease("city-diaries", 2),
-  getCollectionByRelease("featured", 2),
+  getCollectionByRelease("recent", 10),
+  getCollectionByRelease("city-diaries", 10),
+  getCollectionByRelease("featured", 10),
 ]);
 const collections = getHomepageCollections(data);
+export const prerender = true;
 ---
 
 <Layout>
-  <!-- <Hero slides={data.slides.nodes} /> -->
+  <Slides />
   <CollectionsLinks />
   {
     collections.map(({ title, data, link }) => (

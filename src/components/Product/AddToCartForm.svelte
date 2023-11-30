@@ -29,10 +29,10 @@
 </script>
 
 
-<form on:submit|preventDefault={(e) => addToCart(e)} class="container">
+<form on:submit|preventDefault={(e) => addToCart(e)} class="container flex flex-col gap-3">
   {#if hasVariants}
-  <div class="border border-gray-400 cursor-pointer px-2 py-1 relative w-fit">
-    <select on:change={handleVariantChange} class="bg-transparent  border-none text-black cursor-pointer h-10 m-0 w-full focus:primary-100">
+  <div class="border border-gray-400 cursor-pointer px-2 py-1 relative w-full">
+    <select on:change={handleVariantChange} class="bg-transparent border-none text-black cursor-pointer h-10 m-0 w-full ">
       {#each variants as variant (variant.id)}
       <option value={variant.title}>{variant.title}</option>
       {/each}

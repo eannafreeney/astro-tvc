@@ -1,15 +1,16 @@
 ---
 import { getArtistCollectionByRelease } from "../../utils/airtable";
 import { ProductsContainer, Product } from "../../components/";
+import { artists } from "../../../scripts/info.json";
 import Layout from "../../layouts/Layout.astro";
 import { unslugify } from "../../utils/common";
 
 export async function getStaticPaths() {
-  return [
-    {
-      params: { handle: "peter-bialobrzeski" },
-    },
-  ];
+  return artists.map((artist) => {
+    return {
+      params: { handle: artist },
+    };
+  });
 }
 
 const { handle } = Astro.params;

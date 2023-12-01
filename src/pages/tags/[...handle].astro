@@ -1,15 +1,16 @@
 ---
 import { getTagCollectionByRelease } from "../../utils/airtable";
 import { ProductsContainer, Product } from "../../components/";
+import { tags } from "../../../scripts/info.json";
 import Layout from "../../layouts/Layout.astro";
 import { unslugify } from "../../utils/common";
 
 export async function getStaticPaths() {
-  return [
-    {
-      params: { handle: "architecture" },
-    },
-  ];
+  return tags.map((tag) => {
+    return {
+      params: { handle: tag },
+    };
+  });
 }
 
 const { handle } = Astro.params;

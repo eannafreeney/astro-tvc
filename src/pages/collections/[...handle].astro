@@ -1,7 +1,9 @@
 ---
 import { getCollectionByRelease } from "../../utils/airtable";
 import { unslugify } from "../../utils/common";
-import { data as collections } from "../../constants/collections";
+import { collections } from "../../../scripts/info.json";
+console.log(collections);
+
 import {
   ProductsContainer,
   Product,
@@ -10,9 +12,9 @@ import {
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  return collections.map((col) => {
+  return collections.map((collection) => {
     return {
-      params: { handle: col.label },
+      params: { handle: collection },
     };
   });
 }

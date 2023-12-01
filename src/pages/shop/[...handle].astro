@@ -1,6 +1,7 @@
 ---
 import { getProductByID } from "../../utils/shopify";
 import { getBookBySKU } from "../../api/api";
+import { titles } from "../../../scripts/info.json";
 import { books } from "../../constants/ids";
 import Layout from "../../layouts/Layout.astro";
 import {
@@ -10,9 +11,9 @@ import {
 } from "../../components/Product";
 
 export async function getStaticPaths() {
-  return Object.keys(books).map((slug) => {
+  return titles.map((title) => {
     return {
-      params: { handle: slug },
+      params: { handle: title },
     };
   });
 }

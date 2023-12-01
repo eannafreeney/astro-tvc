@@ -64,26 +64,6 @@ const makeShopifyRequest = async (query, variables, buyerIP) => {
   return json.data;
 };
 
-// Get a product by its handle (slug)
-export const getProductByHandle = async (options: {
-  handle: string;
-  buyerIP: string;
-}) => {
-  const { handle, buyerIP } = options;
-
-  const data = await makeShopifyRequest(
-    ProductByHandleQuery,
-    { handle },
-    buyerIP
-  );
-
-  const { product } = data;
-
-  const parsedProduct = ProductResult.parse(product);
-
-  return parsedProduct;
-};
-
 // Get a product by its id
 export const getProductByID = async (options) => {
   const { id, buyerIP } = options;

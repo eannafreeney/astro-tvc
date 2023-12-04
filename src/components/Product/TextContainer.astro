@@ -16,11 +16,11 @@ const firstVariant = shopifyProduct?.variants.nodes[0];
 
 const percentageFunded = calcPercentageSold(
   airtableData["edition size"],
-  firstVariant.quantityAvailable
+  firstVariant?.quantityAvailable
 );
 ---
 
-<section class="my-4 flex flex-col gap-4 md:gap-3">
+<section class="my-6 flex flex-col gap-4">
   <div class="container hidden sm:block">
     <Breadcrumb data={airtableData} />
   </div>
@@ -28,22 +28,22 @@ const percentageFunded = calcPercentageSold(
     <h3 class="break-words font-SohneKraftig text-2xl leading-7">
       {airtableData.title}
     </h3>
-    <h2 class="font-SohneBuch text-xl">
+    <ul class="font-SohneBuch text-xl">
       {
         airtableData.artist.map((artist) => (
-          <a href={`/artists/${artist}`}>{artist}</a>
+          <a href={`/artists/${slugify(artist)}`}>
+            <li>{artist}</li>
+          </a>
         ))
       }
-    </h2>
+    </ul>
   </div>
-  <div class="container text-sm">
-    <Money
-      price={firstVariant.price}
-      compareAtPrice={firstVariant.compareAtPrice}
-    />
-    {isFunding && <span>{`/ ${percentageFunded}% Funded`}</span>}
-  </div>
-  <AddToCartForm client:load variants={variants} />
+  <AddToCartForm
+    client:load
+    variants={variants}
+    isFunding={isFunding}
+    percentageFunded={percentageFunded}
+  />
   <Accordions description={airtableData.description} bio={airtableData.bio} />
   {
     isFunding && (

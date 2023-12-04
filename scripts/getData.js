@@ -18,6 +18,8 @@ const data = {
   titles: [],
   artists: [],
   collections: [],
+  funding: {},
+  books: {},
 };
 
 const uniqueTags = new Set();
@@ -40,10 +42,24 @@ base("Catalogue")
             uniqueArtists.add(slugify(art))
           );
 
+          // Get books that are being funded
+          record.fields.categories.forEach((cat) => {
+            if (cat === "Funding") {
+              // uniqueFunding.add(slugify(record.fields.title));
+              data.funding = { [slugify(record.fields.title)]: true };
+            }
+          });
+
           // Ensure unique collections
           record.fields.categories.forEach((cat) =>
             uniqueCollections.add(slugify(cat))
           );
+
+          // create book obj with sku and id
+          data.books[slugify(record.fields.title)] = {
+            ID: record.fields.shopifyID,
+            SKU: record.fields.SKU,
+          };
         }
       }, {});
 
@@ -70,7 +86,7 @@ const slugify = (category) => {
       // remove leading & trailing whitespace
       .trim()
       // remove special characters
-      .replace(/[^A-Za-z0-9 ]/g, "")
+      .replace(/[^A-Za-z0-9- ]/g, "")
       // replace spaces
       .replace(/\s+/g, "-")
       // remove leading & trailing separtors

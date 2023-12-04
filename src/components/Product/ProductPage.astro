@@ -1,0 +1,28 @@
+---
+import {
+  ImageContainer,
+  TextContainer,
+  Breadcrumb,
+} from "../../components/Product";
+
+const { airtableData, shopifyProduct } = Astro.props;
+---
+
+<section class="md:grid md:grid-cols-[3fr,2fr] md:gap-4">
+  <div class="md:relative md:min-h-screen">
+    <div class="container py-4 sm:hidden">
+      <Breadcrumb data={airtableData} />
+    </div>
+    <div
+      class="no-scrollbar absolute right-0 top-0 h-full scroll-smooth md:overflow-y-scroll"
+    >
+      <ImageContainer data={airtableData} />
+    </div>
+  </div>
+  <div>
+    <TextContainer
+      airtableData={airtableData}
+      shopifyProduct={shopifyProduct}
+    />
+  </div>
+</section>

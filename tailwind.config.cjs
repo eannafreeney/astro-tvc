@@ -29,15 +29,21 @@ module.exports = {
         SohneLight: ["Sohne-Light"],
         SohneBuch: ["Sohne-Buch"],
         SohneKraftig: ["Sohne-Kraftig"],
+        tvc: ["tvc"],
+      },
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+        marquee2: 'marquee2 25s linear infinite',
       },
       keyframes: {
         marquee: {
-          "0%": { transform: "translate(0, 0)" },
-          "100%": { transform: "translate(-100%, 0)" },
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
-      },
-      animation: {
-        marquee: "marquee linear infinite",
+        marquee2: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
     },
   },

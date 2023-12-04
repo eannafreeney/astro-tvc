@@ -1,0 +1,10 @@
+---
+import { getCollectionByRelease } from "../utils/airtable";
+import { ProductsContainer, Product } from "../components";
+
+const data = await getCollectionByRelease("recent", 10);
+---
+
+<ProductsContainer title="Recent" link="/collections/recent">
+  {data.map((product) => <Product product={product} />)}
+</ProductsContainer>

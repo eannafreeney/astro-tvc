@@ -14,12 +14,13 @@ export async function getStaticPaths() {
 }
 
 const { handle } = Astro.params;
-const data = await getTagCollectionByRelease(handle);
+const tagCollection = await getTagCollectionByRelease(handle);
+
 export const prerender = true;
 ---
 
-<Layout>
+<Layout title={`#${unslugify(handle)}`}>
   <ProductsContainer title={`#${unslugify(handle)}`}>
-    {data.map((product) => <Product product={product} />)}
+    {tagCollection.map((product) => <Product product={product} />)}
   </ProductsContainer>
 </Layout>

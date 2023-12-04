@@ -3,6 +3,7 @@
   export let price;
   export let showCurrency = false;
   export let compareAtPrice;
+  export let isFirstVariant;
   let formatedCompareAtPrice;
 
   $: formatedPrice = new Intl.NumberFormat("en-US", {
@@ -22,7 +23,7 @@
 </script>
 
 <span>
-  {#if !!formatedCompareAtPrice}
+  {#if !!formatedCompareAtPrice && isFirstVariant}
     {formatedPrice} / <span class="line-through">{`${formatedCompareAtPrice}`}</span>
   {:else}
   {formatedPrice}

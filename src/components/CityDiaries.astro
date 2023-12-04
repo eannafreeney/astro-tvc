@@ -1,0 +1,13 @@
+---
+import { getCollectionByRelease } from "../utils/airtable";
+import { ProductsContainer, Product } from "../components";
+
+const data = await getCollectionByRelease("city-diaries", 10);
+---
+
+<ProductsContainer
+  title="City Diaries / Peter Bialobrzeski"
+  link="/collections/city-diaries"
+>
+  {data.map((product) => <Product product={product} />)}
+</ProductsContainer>

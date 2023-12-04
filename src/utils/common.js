@@ -1,8 +1,8 @@
 export const getHomepageCollections = (data) => [
   {
-    title: "Recent",
+    title: "Sale",
     data: data[0],
-    link: "/collections/recent",
+    link: "/collections/sale",
   },
   {
     title: "City Diaries",
@@ -22,7 +22,7 @@ export const slugify = (string) => {
       // remove leading & trailing whitespace
       .trim()
       // remove special characters
-      // .replace(/[^A-Za-z0-9 ]/g, "")
+      .replace(/[^A-Za-z0-9- ]/g, "")
       // replace spaces
       .replace(/\s+/g, "-")
       // remove leading & trailing separtors

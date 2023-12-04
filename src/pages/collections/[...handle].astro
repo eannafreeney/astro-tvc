@@ -2,7 +2,6 @@
 import { getCollectionByRelease } from "../../utils/airtable";
 import { unslugify } from "../../utils/common";
 import { collections } from "../../../scripts/info.json";
-console.log(collections);
 
 import {
   ProductsContainer,
@@ -20,14 +19,14 @@ export async function getStaticPaths() {
 }
 
 const { handle } = Astro.params;
-const data = await getCollectionByRelease(handle);
+const collection = await getCollectionByRelease(handle);
 
 export const prerender = true;
 ---
 
-<Layout>
+<Layout title={unslugify(handle)}>
   <CollectionsLinks />
   <ProductsContainer title={unslugify(handle)}>
-    {data.map((product) => <Product product={product} />)}
+    {collection.map((product) => <Product product={product} />)}
   </ProductsContainer>
 </Layout>

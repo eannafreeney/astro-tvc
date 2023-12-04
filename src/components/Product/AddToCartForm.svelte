@@ -1,10 +1,15 @@
 <script>
   import { addCartItem, isCartUpdating, cart } from "../../stores/cart";
+  import {Money} from '../index'
 
   export let variants;
+  export let isFunding;
+  export let percentageFunded;
+
   let selectedVariant = variants[0]
   let hasVariants = variants.length > 1;
-
+  
+  $: isFirstVariant = selectedVariant === variants[0]
   $: variantInCart =
     $cart &&
     $cart.lines?.nodes.filter((item) => item.merchandise.id === selectedVariant.id)[0];
@@ -28,8 +33,16 @@
   }
 </script>
 
-
+<div class="container text-sm">
+  <Money client:idle
+  price={selectedVariant.price}
+  compareAtPrice={selectedVariant.compareAtPrice}
+  isFirstVariant={isFirstVariant}
+  />
+  {#if isFunding}<span>{`/ ${percentageFunded}% Funded`}</span>{/if}
+</div>
 <form on:submit|preventDefault={(e) => addToCart(e)} class="container flex flex-col gap-3">
+
   {#if hasVariants}
   <div class="border border-gray-400 cursor-pointer px-2 py-1 relative w-full">
     <select on:change={handleVariantChange} class="bg-transparent border-none text-black cursor-pointer h-10 m-0 w-full ">
@@ -37,7 +50,7 @@
       <option value={variant.title}>{variant.title}</option>
       {/each}
     </select>
-  </div>
+  </div>  
   {/if}
 
 

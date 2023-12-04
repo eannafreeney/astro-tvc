@@ -14,12 +14,13 @@ export async function getStaticPaths() {
 }
 
 const { handle } = Astro.params;
-const data = await getArtistCollectionByRelease(handle);
+const artistCollection = await getArtistCollectionByRelease(handle);
+
 export const prerender = true;
 ---
 
-<Layout>
+<Layout title={unslugify(handle)}>
   <ProductsContainer title={`Books by ${unslugify(handle)}`}>
-    {data.map((product) => <Product product={product} />)}
+    {artistCollection.map((product) => <Product product={product} />)}
   </ProductsContainer>
 </Layout>

@@ -24,11 +24,11 @@ export const data = [
     label: "editions",
   },
   {
-    path: "/tag/architecture",
+    path: "/tags/architecture",
     label: "#Architecture",
   },
   {
-    path: "/tag/landscape",
+    path: "/tags/landscape",
     label: "#Landscapes",
   },
   {

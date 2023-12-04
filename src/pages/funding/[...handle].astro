@@ -1,17 +1,9 @@
 ---
 import { getProductByID } from "../../utils/shopify";
 import { getBookBySKU } from "../../api/api";
-import { books, titles } from "../../../scripts/info.json";
+import { books } from "../../../scripts/info.json";
 import Layout from "../../layouts/Layout.astro";
 import { ProductPage } from "../../components/Product";
-
-export async function getStaticPaths() {
-  return titles.map((title) => {
-    return {
-      params: { handle: title },
-    };
-  });
-}
 
 const { handle } = Astro.params;
 const info = books[handle];
@@ -38,7 +30,7 @@ const [shopifyProduct, airtableData] = await Promise.all([
   getBookBySKU(SKU),
 ]);
 
-export const prerender = true;
+export const prerender = false;
 ---
 
 <Layout title={airtableData.title}>

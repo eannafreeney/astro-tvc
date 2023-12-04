@@ -1,29 +1,20 @@
 ---
-import { getCollectionByRelease } from "../utils/airtable";
-import { getHomepageCollections } from "../utils/common";
-import { CollectionsLinks, ProductsContainer, Product } from "../components";
+import { CollectionsLinks } from "../components";
+import RecentBooks from "../components/RecentBooks.astro";
+import Sale from "../components/Sale.astro";
+import CityDiaries from "../components/CityDiaries.astro";
+import Featured from "../components/Featured.astro";
 import Layout from "../layouts/Layout.astro";
 import Slides from "../components/Slides.astro";
 
-const data = await Promise.all([
-  getCollectionByRelease("recent", 10),
-  getCollectionByRelease("city-diaries", 10),
-  getCollectionByRelease("featured", 10),
-]);
-const collections = getHomepageCollections(data);
 export const prerender = true;
 ---
 
 <Layout>
   <Slides />
   <CollectionsLinks />
-  {
-    collections.map(({ title, data, link }) => (
-      <ProductsContainer title={title} link={link}>
-        {data.map((product) => (
-          <Product product={product} />
-        ))}
-      </ProductsContainer>
-    ))
-  }
+  <Sale />
+  <RecentBooks />
+  <CityDiaries />
+  <Featured />
 </Layout>

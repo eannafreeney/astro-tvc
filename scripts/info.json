@@ -91,7 +91,7 @@
     "the-great-eastern",
     "wolfsburg-diary",
     "the-death-and-life-of-great-asian-cities-i",
-    "nonstructures",
+    "non-structures",
     "closed-for-winter",
     "the-death-and-life-of-great-asian-cities-ii",
     "happysad-souvenirs",
@@ -163,5 +163,258 @@
     "sold-out",
     "funding",
     "new"
-  ]
+  ],
+  "funding": {
+    "bury-me-in-the-back-forty": true
+  },
+  "books": {
+    "the-new-towns": {
+      "ID": 5784907055272,
+      "SKU": "TVC074"
+    },
+    "khmer-concrete": {
+      "ID": 5784901943464,
+      "SKU": "TVC070"
+    },
+    "in-search-of-habitat": {
+      "ID": 782997185,
+      "SKU": "TVC045"
+    },
+    "sand-the-transformation-of-berlin": {
+      "ID": 8149228126474,
+      "SKU": "TVC098"
+    },
+    "kudzu": {
+      "ID": 6785011810472,
+      "SKU": "TVC075"
+    },
+    "kochi-diary": {
+      "ID": 8563592897,
+      "SKU": "TVC057"
+    },
+    "dhaka-diary": {
+      "ID": 7056349495464,
+      "SKU": "TVC086"
+    },
+    "zurich-diary": {
+      "ID": 1353524936757,
+      "SKU": "TVC065"
+    },
+    "wuhan-diary": {
+      "ID": 1353524609077,
+      "SKU": "TVC064"
+    },
+    "napoli-nord": {
+      "ID": 4387550396551,
+      "SKU": "TVC069"
+    },
+    "if-you-lived-here-youd-be-home-by-now": {
+      "ID": 8563576961,
+      "SKU": "TVC056"
+    },
+    "mountains-and-waters": {
+      "ID": 6095663873,
+      "SKU": "TVC050"
+    },
+    "athens-diary": {
+      "ID": 1824097473,
+      "SKU": "TVC043"
+    },
+    "tolyatti": {
+      "ID": 5784905089192,
+      "SKU": "TVC072"
+    },
+    "osaka-diary": {
+      "ID": 8782121985,
+      "SKU": "TVC063"
+    },
+    "crossing-over": {
+      "ID": 697706305,
+      "SKU": "TVC025"
+    },
+    "fallout": {
+      "ID": 642993025,
+      "SKU": "TVC037"
+    },
+    "falling-water": {
+      "ID": 7006998724776,
+      "SKU": "TVC082"
+    },
+    "the-city-in-itself": {
+      "ID": 10149228417,
+      "SKU": "TVC062"
+    },
+    "belfast-diary": {
+      "ID": 7130418020520,
+      "SKU": "TVC089"
+    },
+    "my-dreamhouse-is-not-a-house": {
+      "ID": 8177659117834,
+      "SKU": "TVC085"
+    },
+    "the-hunter-the-woman-and-the-hut": {
+      "ID": 6967605723304,
+      "SKU": "TVC081"
+    },
+    "cairo-diary": {
+      "ID": 642017345,
+      "SKU": "TVC029"
+    },
+    "american-motel-signs-ii": {
+      "ID": 6029920633000,
+      "SKU": "TVC076"
+    },
+    "jakarta": {
+      "ID": 5527766209,
+      "SKU": "TVC048"
+    },
+    "american-motel-signs-iii": {
+      "ID": 8019173114122,
+      "SKU": "TVC094"
+    },
+    "ecology-of-dreams": {
+      "ID": 7400031322280,
+      "SKU": "TVC080"
+    },
+    "kochi-nights": {
+      "ID": 1353519661109,
+      "SKU": "TVC059"
+    },
+    "bury-me-in-the-back-forty": {
+      "ID": 8298846978314,
+      "SKU": "TVC100"
+    },
+    "crown-ditch": {
+      "ID": 4673449459847,
+      "SKU": "TVC071"
+    },
+    "a-small-guide-to-homeownership": {
+      "ID": 4810159915143,
+      "SKU": "TVC073"
+    },
+    "undercover": {
+      "ID": 5790847402152,
+      "SKU": "TVC078"
+    },
+    "common-love": {
+      "ID": 642000513,
+      "SKU": "TVC035"
+    },
+    "rear-window": {
+      "ID": 697763073,
+      "SKU": "TVC028"
+    },
+    "linz-diary": {
+      "ID": 7124056834216,
+      "SKU": "TVC090"
+    },
+    "utopia-ending": {
+      "ID": 7969297924362,
+      "SKU": "TVC079"
+    },
+    "a-folktale-from-vietnam": {
+      "ID": 7054580220072,
+      "SKU": "TVC093"
+    },
+    "no-storm-in-sight": {
+      "ID": 6617890095272,
+      "SKU": "TVC077"
+    },
+    "the-great-eastern": {
+      "ID": 4163074785415,
+      "SKU": "TVC068"
+    },
+    "wolfsburg-diary": {
+      "ID": 5427013761,
+      "SKU": "TVC049"
+    },
+    "the-death-and-life-of-great-asian-cities-i": {
+      "ID": 1579590647861,
+      "SKU": "TVC067"
+    },
+    "non-structures": {
+      "ID": 8291813261578,
+      "SKU": "TVC095"
+    },
+    "closed-for-winter": {
+      "ID": 643095553,
+      "SKU": "TVC026"
+    },
+    "the-death-and-life-of-great-asian-cities-ii": {
+      "ID": 6557239574696,
+      "SKU": "TVC091"
+    },
+    "happysad-souvenirs": {
+      "ID": 6557489692840,
+      "SKU": "TVC092"
+    },
+    "minsk-diary": {
+      "ID": 7124202815656,
+      "SKU": "TVC088"
+    },
+    "paris-et-la-banlieue": {
+      "ID": 641974017,
+      "SKU": "TVC030"
+    },
+    "moment": {
+      "ID": 6095682369,
+      "SKU": "TVC051"
+    },
+    "beirut-diary": {
+      "ID": 8651092225,
+      "SKU": "TVC053"
+    },
+    "american-motel-signs-i": {
+      "ID": 6095685505,
+      "SKU": "TVC052"
+    },
+    "suburban-bus": {
+      "ID": 6798588936360,
+      "SKU": "TVC084"
+    },
+    "japanscapes": {
+      "ID": 9652377921,
+      "SKU": "TVC061"
+    },
+    "a-one-storied-country": {
+      "ID": 7990873293066,
+      "SKU": "TVC083"
+    },
+    "a-guide-to-infrastructure-and-corruption": {
+      "ID": 9652374401,
+      "SKU": "TVC060"
+    },
+    "frameworks": {
+      "ID": 715380481,
+      "SKU": "TVC032"
+    },
+    "tales-from-beneath-the-arches": {
+      "ID": 8563578497,
+      "SKU": "TVC055"
+    },
+    "lost-rivers": {
+      "ID": 642112065,
+      "SKU": "TVC036"
+    },
+    "yangon-diary": {
+      "ID": 7124162085032,
+      "SKU": "TVC087"
+    },
+    "taipei-diary": {
+      "ID": 642149825,
+      "SKU": "TVC044"
+    },
+    "the-older-industrial-parks-near-newport-victoria": {
+      "ID": 10252221185,
+      "SKU": "TVC058"
+    },
+    "hotel-okinawa": {
+      "ID": 9647543361,
+      "SKU": "TVC054"
+    },
+    "budapest-diary": {
+      "ID": 4371097288839,
+      "SKU": "TVC066"
+    }
+  }
 }

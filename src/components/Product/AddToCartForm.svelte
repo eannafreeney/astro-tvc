@@ -8,6 +8,7 @@
 
   let selectedVariant = variants[0]
   let hasVariants = variants.length > 1;
+  let quantity = 1
   
   $: isFirstVariant = selectedVariant === variants[0]
   $: variantInCart =
@@ -21,6 +22,17 @@
     selectedVariant = variants[selectedIndex];
   }
 
+  function increment() {
+    return quantity ++
+  }
+
+  function decrement() {
+   if(quantity === 1) {
+    return 
+   }
+   return quantity--
+  }
+
   function addToCart(e) {
     const form = e.target;
     const formData = new FormData(form);
@@ -31,10 +43,11 @@
     };
     addCartItem(item);
   }
+
 </script>
 
-<div class="container text-sm">
-  <Money client:idle
+<div class="container text-md">
+  <Money 
   price={selectedVariant.price}
   compareAtPrice={selectedVariant.compareAtPrice}
   isFirstVariant={isFirstVariant}
@@ -53,11 +66,16 @@
   </div>  
   {/if}
 
-
   <!-- Hidden fields to store selected variant's id and quantity -->
   <input type="hidden" bind:value={selectedVariant.id} name="id">
-  <input type="hidden" name="quantity" value="1">
+  <input type="hidden" name="quantity" bind:value={quantity}>
   
+  <div class="flex items-center gap-2">
+  <div class="border-2 rounded-lg px-2 py-[10px] flex items-center gap-3">
+    <div on:click={decrement} class="cursor-pointer">-</div>
+    {quantity}
+    <div on:click={increment} class="cursor-pointer">+</div>
+  </div>
   <button
     type="submit"
     class="button"
@@ -91,10 +109,11 @@
       Sold Out
     {/if}
   </button>
+</div>
 
   {#if noQuantityLeft}
     <div class="text-center text-red-600">
-      <small>All units left are in your cart</small>
+      <small>All units left are already in your cart</small>
     </div>
   {/if}
 </form>

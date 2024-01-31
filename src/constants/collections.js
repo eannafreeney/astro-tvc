@@ -1,3 +1,21 @@
+export const homeCollections = [
+  {
+    link: "/collections/recent",
+    title: "Recent",
+    collection: "recent",
+  },
+  {
+    link: "/collections/city-diaries",
+    title: "City Diaries – Peter Bialobrzeski",
+    collection: "city-diaries",
+  },
+  {
+    link: "/collections/featured",
+    title: "Featured",
+    collection: "featured",
+  },
+];
+
 export const data = [
   {
     path: "/collections/sale",

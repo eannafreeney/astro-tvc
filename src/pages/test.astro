@@ -1,0 +1,12 @@
+---
+---
+
+<div
+  x-data="{ posts: [], placeholder: 'Type Here', location:'' }"
+  x-init="posts = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json()"
+  x-effect="console.log(posts)"
+>
+  <button @click="$el.innerHTML = 'Hello World!'"
+    >Replace me with "Hello World!"</button
+  >
+</div>

@@ -6,11 +6,11 @@ import { Icon } from "astro-icon";
 // } from "react-icons/ai";
 
 export const data = [
-  {
-    id: 1,
-    icon: <Icon name="mdi:account" />,
-    url: "https://www.facebook.com/thevelvetcell",
-  },
+  // {
+  //   id: 1,
+  //   icon: <Icon name="mdi:account" />,
+  //   url: "https://www.facebook.com/thevelvetcell",
+  // },
   //   {
   //     id: 2,
   //     icon: <AiOutlineTwitter />,

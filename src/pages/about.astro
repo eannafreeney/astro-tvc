@@ -2,13 +2,16 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import aboutImage from "../assets/images/hero.jpg";
+
 export const prerender = true;
 ---
 
-<Layout>
+<Layout title="About | The Velvet Cell">
   <div class="grid place-items-center">
-    <div class="w-2/4 py-4">
-      <Image src={aboutImage} alt="The Velvet Cell" width="500" height="500" />
+    <div class="my-4 w-2/4">
+      <Image src={aboutImage} alt="The Velvet Cell" />
+    </div>
+    <div class="mb-4 w-2/4">
       <p>
         The Velvet Cell is an independent photobook publishing house based in
         Berlin, Germany, run by Éanna de Fréine and Ricardo Nunes. Established
@@ -27,7 +30,7 @@ export const prerender = true;
         thoughtfulness that goes into every stage of the book-making process,
         and strive to reflect the diversity of visual arts publishing today.
       </p>
-      <h3>Submissions</h3>
+      <h3 class="text-xl font-bold">Submissions</h3>
       <p>
         We welcome submissions to The Velvet Cell. Please take the time become
         familiar with our catalogue to get an idea whether or not your project
@@ -57,7 +60,7 @@ export const prerender = true;
         make, and market for them is quite small. This is in no means a
         reflection of the work itself.
       </p>
-      <h3>Contact</h3>
+      <h3 class="text-xl font-bold">Contact</h3>
       <p>For direct enquiries please contact us at contact@thevelvetcell.com</p>
     </div>
   </div>

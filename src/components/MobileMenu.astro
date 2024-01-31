@@ -1,0 +1,58 @@
+---
+import { data as navLinks } from "../constants/primary-menu";
+---
+
+<div x-show="showMenu" x-cloak class="relative z-50">
+  <div
+    id="fadeInOut"
+    class="fixed inset-0 bg-slate-400/50 backdrop-blur-sm transition-opacity"
+  >
+  </div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pl-6 focus:outline-none"
+      >
+        <div
+          class="pointer-events-auto fixed bottom-0 left-0 top-0 max-h-screen w-screen max-w-lg bg-white"
+        >
+          <button class="absolute right-3 top-3" @click="showMenu = false"
+            >&times;</button
+          >
+          <div class="grid h-screen place-items-center">
+            <div class="flex flex-col text-center">
+              {
+                navLinks.map((link) => (
+                  <a
+                    class="text-5xl capitalize leading-normal hover:text-primary-100"
+                    href={link.path}
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+          <!-- <SocialLinks /> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #fadeInOut {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  #fadeInOut.show {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  setTimeout(() => {
+    document.getElementById("fadeInOut").classList.add("show");
+  }, 1000);
+</script>

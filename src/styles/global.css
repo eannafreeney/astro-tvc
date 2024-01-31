@@ -52,11 +52,15 @@
   }
 
   .button {
-    @apply flex w-full items-center justify-center rounded-lg;
+    @apply flex grow items-center justify-center rounded-lg;
     @apply bg-primary-100 bg-gradient-to-br;
     @apply px-8 py-3 text-base font-medium text-white;
     @apply transition hover:opacity-80;
     @apply focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1;
     @apply disabled:cursor-not-allowed disabled:opacity-60;
   }
+}
+
+[x-cloak] {
+  display: none !important;
 }

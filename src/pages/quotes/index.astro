@@ -1,0 +1,17 @@
+---
+import PocketBase from "Pocketbase";
+// import QuotePage from "../../components/Quotes/QuotePage.svelte";
+
+const pb = new PocketBase("http://127.0.0.1:8090");
+
+await pb.admins.authWithPassword("eanna@thevelvetcell.com", "emiliaromagna00");
+const printers = await pb.collection("printers").getFullList({
+  sort: "-created",
+});
+
+const submissions = await pb.collection("submissions").getFullList({
+  sort: "-created",
+});
+---
+
+<QuotePage client:visible printers={printers} submissions={submissions} />

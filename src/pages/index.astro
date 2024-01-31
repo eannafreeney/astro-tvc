@@ -1,20 +1,23 @@
 ---
 import { CollectionsLinks } from "../components";
-import RecentBooks from "../components/RecentBooks.astro";
-import Sale from "../components/Sale.astro";
-import CityDiaries from "../components/CityDiaries.astro";
-import Featured from "../components/Featured.astro";
+import { homeCollections } from "@/constants/collections";
+import Collection from "../components/Collection.astro";
 import Layout from "../layouts/Layout.astro";
 import Slides from "../components/Slides.astro";
 
 export const prerender = true;
 ---
 
-<Layout>
+<Layout title="Home | The Velvet Cell">
   <Slides />
   <CollectionsLinks />
-  <Sale />
-  <RecentBooks />
-  <CityDiaries />
-  <Featured />
+  {
+    homeCollections.map((col) => (
+      <Collection
+        title={col.title}
+        link={col.link}
+        collection={col.collection}
+      />
+    ))
+  }
 </Layout>

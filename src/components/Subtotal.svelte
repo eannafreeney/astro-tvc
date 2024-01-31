@@ -3,9 +3,6 @@
     import {
     cart
   } from "../stores/cart";
-
-
-
 </script>
 
 

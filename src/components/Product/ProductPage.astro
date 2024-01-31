@@ -4,17 +4,18 @@ import {
   TextContainer,
   Breadcrumb,
 } from "../../components/Product";
+import Collection from "../Collection.astro";
 
 const { airtableData, shopifyProduct } = Astro.props;
 ---
 
-<section class="md:grid md:grid-cols-[3fr,2fr] md:gap-4">
+<section class="md:grid md:grid-cols-[3fr,2fr] md:gap-x-0.5">
   <div class="md:relative md:min-h-screen">
     <div class="container py-4 sm:hidden">
       <Breadcrumb data={airtableData} />
     </div>
     <div
-      class="no-scrollbar absolute right-0 top-0 h-full scroll-smooth md:overflow-y-scroll"
+      class="no-scrollbar h-full scroll-smooth border-r-2 border-black md:absolute md:right-0 md:top-0 md:overflow-y-scroll"
     >
       <ImageContainer data={airtableData} />
     </div>
@@ -23,6 +24,14 @@ const { airtableData, shopifyProduct } = Astro.props;
     <TextContainer
       airtableData={airtableData}
       shopifyProduct={shopifyProduct}
+    />
+  </div>
+  <div class="col-span-full border-t-2 border-black">
+    <Collection
+      qty="16"
+      currentProduct={airtableData.title}
+      title="You Might Also Like"
+      collection={airtableData.categories[0]}
     />
   </div>
 </section>

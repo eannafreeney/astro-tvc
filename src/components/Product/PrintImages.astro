@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+
+const { airtableData } = Astro.props;
+const printImages = airtableData["print image"];
+---
+
+{
+  printImages?.length > 0 && (
+    <div class="container" id="print">
+      <h3 class="pb-2 font-SohneKraftig text-lg">Signed Print Details</h3>
+      <p>{airtableData["print description"]}</p>
+      <div class="flex flex-col gap-2">
+        {printImages.map((print) => (
+          <Image
+            src={print.url}
+            alt="Print Image"
+            width={print.width}
+            height={print.height}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}

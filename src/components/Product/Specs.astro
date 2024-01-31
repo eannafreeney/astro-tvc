@@ -1,0 +1,19 @@
+---
+const { airtableData } = Astro.props;
+---
+
+<div>
+  <ul class="container mb-2 font-SohneBuch">
+    <li class="text-sm text-gray-500">
+      {airtableData.pages} pages
+    </li>
+    <li class="text-sm text-gray-500">
+      {`${airtableData.size}, ${airtableData.format}`}
+    </li>
+    <li class="text-sm text-gray-500">ISBN {airtableData.ISBN}</li>
+    <li class="text-sm text-gray-500">
+      Limited Edition of {airtableData["edition size"]}
+    </li>
+    <li class="text-sm text-gray-500">{airtableData.SKU}</li>
+  </ul>
+</div>

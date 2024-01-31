@@ -1,15 +1,13 @@
 ---
 import { data as links } from "../constants/primary-menu";
-
 ---
 
-<nav class="hidden md:flex gap-2">
-    {links.map((link) => (
-      <a
-        href={link.path}
-        class="capitalize hover:text-primary-100"
-      >
+<nav class="hidden gap-3 md:flex">
+  {
+    links.map((link) => (
+      <a href={link.path} class="capitalize hover:text-primary-100">
         {link.label}
       </a>
-    ))}
-  </nav>
+    ))
+  }
+</nav>

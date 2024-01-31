@@ -1,5 +1,12 @@
 ---
-import { Logo, Navigation, MenuButton, MobileLogo, Subtotal } from "./index";
+import {
+  Logo,
+  Navigation,
+  MenuButton,
+  MenuButton2,
+  MobileLogo,
+  Subtotal,
+} from "./index";
 import logo from "../assets/images/logo.png";
 import CartIcon from "./CartIcon.svelte";
 ---
@@ -17,9 +24,10 @@ import CartIcon from "./CartIcon.svelte";
         <Navigation />
       </div>
       <div class="flex items-center gap-2">
-        <Subtotal client:load />
-        <CartIcon client:load />
-        <MenuButton client:load />
+        <Subtotal client:idle />
+        <CartIcon client:idle />
+        <MenuButton2 />
+        <!-- <MenuButton client:visible /> -->
       </div>
     </nav>
   </div>

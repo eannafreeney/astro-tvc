@@ -155,8 +155,9 @@
                               {item.merchandise.product.title}
                             </a>
                             <p class="text-xs">
-                              <Money price={item.cost.amountPerQuantity} />
+                              <Money price={item.cost.amountPerQuantity} /> <span>x {item.quantity}</span>
                             </p>
+                            
                           </div>
                           <div
                             class="col-span-2 items-end flex justify-between flex-col"

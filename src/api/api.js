@@ -93,16 +93,19 @@ export const getCollection = async (handle, limit) => {
       .select()
       .eachPage(
         function page(records, fetchNextPage) {
-          records?.filter(isRecordAvailable).forEach((record) => {
-            if (
-              record
-                .get("categories")
-                .map((cat) => slugify(cat))
-                .includes(handle)
-            ) {
-              books.push(getOverview(record.fields));
-            }
-          });
+          records
+            ?.filter(isRecordAvailable)
+            .filter(hasCopiesForSale)
+            .forEach((record) => {
+              if (
+                record
+                  .get("categories")
+                  .map((cat) => slugify(cat))
+                  .includes(handle)
+              ) {
+                books.push(getOverview(record.fields));
+              }
+            });
 
           fetchNextPage();
         },

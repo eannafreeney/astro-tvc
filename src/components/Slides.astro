@@ -16,8 +16,10 @@ const {
       <div
         class="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform font-SohneBuch text-white"
       >
-        <div class="text-center text-7xl">{title}</div>
-        <div class="text-center text-2xl tracking-wider">{subtitle}</div>
+        <div class="text-center text-5xl md:text-7xl">{title}</div>
+        <div class="text-x text-center tracking-wider md:text-2xl">
+          {subtitle}
+        </div>
       </div>
       <Image
         src={slideImg.url}

@@ -19,7 +19,7 @@ const artistCollection = await getArtistCollectionByRelease(handle);
 export const prerender = true;
 ---
 
-<Layout title={unslugify(handle)}>
+<Layout title={`${unslugify(handle)} | The Velvet Cell`}>
   <ProductsContainer title={`Books by ${unslugify(handle)}`}>
     {artistCollection.map((product) => <Product product={product} />)}
   </ProductsContainer>

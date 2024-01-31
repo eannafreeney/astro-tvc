@@ -24,7 +24,7 @@ const collection = await getCollectionByRelease(handle);
 export const prerender = true;
 ---
 
-<Layout title={unslugify(handle)}>
+<Layout title={`${unslugify(handle)} | The Velvet Cell`}>
   <CollectionsLinks />
   <ProductsContainer title={unslugify(handle)}>
     {collection.map((product) => <Product product={product} />)}

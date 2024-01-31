@@ -1,15 +1,14 @@
 ---
 import { marked } from "marked";
-import { Image } from "astro:assets";
 import { slugify, calcPercentageSold } from "../../utils/common";
 import { AddToCartForm, Breadcrumb } from "../Product";
 import ImageGallery from "../Product/ImageGallery.astro";
-import { Money, Accordions } from "../index";
+import { Accordions } from "../index";
+import { Tags, PrintImages, Specs } from "../Product";
 
 const { shopifyProduct, airtableData } = Astro.props;
 const variants = shopifyProduct?.variants.nodes;
 
-const printImage = airtableData["print image"]?.[0];
 const isFunding = airtableData.categories.includes("Funding");
 
 const firstVariant = shopifyProduct?.variants.nodes[0];
@@ -20,7 +19,7 @@ const percentageFunded = calcPercentageSold(
 );
 ---
 
-<section class="my-6 flex flex-col gap-4">
+<section class="mt-6 flex flex-col gap-4 md:my-6">
   <div class="container hidden sm:block">
     <Breadcrumb data={airtableData} />
   </div>
@@ -28,7 +27,7 @@ const percentageFunded = calcPercentageSold(
     <h3 class="break-words font-SohneKraftig text-2xl leading-7">
       {airtableData.title}
     </h3>
-    <ul class="font-SohneBuch text-xl">
+    <ul class="font-SohneBuch text-2xl">
       {
         airtableData.artist.map((artist) => (
           <a href={`/artists/${slugify(artist)}`}>
@@ -62,48 +61,9 @@ const percentageFunded = calcPercentageSold(
     />
     <div class="font-SohneBuch" set:html={marked.parse(airtableData.bio)} />
   </div>
-  <div>
-    <ul class="container mb-2 font-SohneBuch">
-      <li class="text-sm text-gray-500">
-        {airtableData.pages} pages
-      </li>
-      <li class="text-sm text-gray-500">
-        {`${airtableData.size}, ${airtableData.format}`}
-      </li>
-      <li class="text-sm text-gray-500">ISBN {airtableData.ISBN}</li>
-      <li class="text-sm text-gray-500">
-        Limited Edition of {airtableData["edition size"]}
-      </li>
-      <li class="text-sm text-gray-500">{airtableData.SKU}</li>
-    </ul>
-  </div>
-
-  <div class="container mb-2 flex flex-wrap gap-1 font-SohneBuch">
-    {
-      airtableData.tags.map((tag) => (
-        <a
-          href={`/tags/${slugify(tag)}`}
-          class="rounded border border-primary-100 px-2 py-1 text-primary-100 hover:opacity-70"
-        >
-          # {tag}
-        </a>
-      ))
-    }
-  </div>
-  {
-    !!printImage && (
-      <div class="container" id="print">
-        <h3 class="pb-2 font-SohneKraftig text-lg">Signed Print Details</h3>
-        <p>{airtableData["print description"]}</p>
-        <Image
-          src={printImage.url}
-          alt="Print Image"
-          width={printImage.width}
-          height={printImage.height}
-        />
-      </div>
-    )
-  }
+  <Specs {airtableData} />
+  <Tags {airtableData} />
+  <PrintImages {airtableData} />
   <div class="sm:hidden" id="gallery">
     <ImageGallery images={airtableData.gallery} alt={airtableData.title} />
   </div>

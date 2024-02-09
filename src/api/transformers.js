@@ -20,3 +20,10 @@ export const getOverview = (book) => ({
     _.pick(cover, ["id", "width", "height", "url"])
   ),
 });
+
+export const getBasic = (book) => ({
+  title: book.title,
+  artist: book.artist,
+  ISBN: book.ISBN,
+  SKU: book.SKU,
+});

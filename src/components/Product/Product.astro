@@ -10,6 +10,7 @@ const { product } = Astro.props;
 const isFundingProduct = fundingProjects[slugify(product.title)];
 
 const { title, artist, cover, categories } = product;
+
 const joinedArtists = [join(artist, " & ")];
 ---
 

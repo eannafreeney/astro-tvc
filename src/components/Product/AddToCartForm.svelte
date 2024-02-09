@@ -71,7 +71,7 @@
   <input type="hidden" name="quantity" bind:value={quantity}>
   
   <div class="flex items-center gap-2">
-  <div class="border-2 rounded-lg px-2 py-[10px] flex items-center gap-3">
+  <div class="border-2 rounded-lg px-2 py-[10px] flex items-center gap-3 text-xl">
     <div on:click={decrement} class="cursor-pointer">-</div>
     {quantity}
     <div on:click={increment} class="cursor-pointer">+</div>

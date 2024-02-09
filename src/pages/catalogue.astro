@@ -1,0 +1,36 @@
+---
+import { getAllBooksByRelease } from "../utils/airtable";
+import Layout from "../layouts/Layout.astro";
+
+const books = await getAllBooksByRelease();
+
+export const prerender = true;
+---
+
+<Layout title="Catalogue | The Velvet Cell">
+  <div class="container my-8">
+    <table>
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Title</th>
+          <th>Artist(s)</th>
+          <th>ISBN</th>
+          <th>-</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          books.map((b) => (
+            <tr>
+              <th>{b.SKU}</th>
+              <th>{b.title}</th>
+              <th>{b.artist}</th>
+              <th>{b.ISBN}</th>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Layout>

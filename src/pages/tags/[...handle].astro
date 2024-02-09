@@ -1,6 +1,10 @@
 ---
 import { getTagCollectionByRelease } from "../../utils/airtable";
-import { ProductsContainer, Product } from "../../components/";
+import {
+  ProductsContainer,
+  Product,
+  CollectionsLinks,
+} from "../../components/";
 import { tags } from "../../../scripts/info.json";
 import Layout from "../../layouts/Layout.astro";
 import { unslugify } from "../../utils/common";
@@ -20,6 +24,7 @@ export const prerender = true;
 ---
 
 <Layout title={`#${unslugify(handle)} | The Velvet Cell`}>
+  <CollectionsLinks />
   <ProductsContainer title={`#${unslugify(handle)}`}>
     {tagCollection.map((product) => <Product product={product} />)}
   </ProductsContainer>

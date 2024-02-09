@@ -1,24 +1,9 @@
-export const getHomepageCollections = (data) => [
-  {
-    title: "Sale",
-    data: data[0],
-    link: "/collections/sale",
-  },
-  {
-    title: "City Diaries",
-    data: data[1],
-    link: "/collections/city-diaries",
-  },
-  {
-    title: "Featured",
-    data: data[2],
-    link: "/collections/featured",
-  },
-];
+import unaccent from "unaccent";
 
 export const slugify = (string) => {
+  const unaccentedStr = unaccent(string.toLowerCase());
   return (
-    string
+    unaccentedStr
       // remove leading & trailing whitespace
       .trim()
       // remove special characters
@@ -38,6 +23,7 @@ export const slugify = (string) => {
  * @param {string} slug slugified string.
  * @returns {string} un-slugified string.
  */
+
 export const unslugify = (slug) =>
   slug
     .replace(/\-/g, " ")

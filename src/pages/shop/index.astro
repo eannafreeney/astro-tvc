@@ -1,9 +1,9 @@
 ---
-import { getAllBooksByRelease } from "../../utils/airtable";
+import { getAllAvailableBooksByRelease } from "../../utils/airtable";
 import Layout from "../../layouts/Layout.astro";
 import { ProductsContainer, Product, CollectionsLinks } from "../../components";
 
-const data = await getAllBooksByRelease();
+const data = await getAllAvailableBooksByRelease();
 export const prerender = true;
 ---
 

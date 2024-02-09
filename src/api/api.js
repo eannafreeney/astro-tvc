@@ -1,6 +1,6 @@
 import Airtable from "airtable";
 import { slugify } from "../utils/common";
-import { OVERVIEW_FIELDS, getOverview } from "./transformers";
+import { OVERVIEW_FIELDS, getOverview, getBasic } from "./transformers";
 
 const airtableBaseId = import.meta.env.PRIVATE_CATEALOGUE_BASE_ID;
 const apiKey = "keyLDxOIdcrX4g6KY";
@@ -14,6 +14,37 @@ Airtable.configure({
 const isRecordAvailable = (record) => record.get("status") === "Available";
 const hasCopiesForSale = (record) =>
   !record.get("categories").includes("Sold Out");
+
+export const getAllBooks = async () => {
+  const base = Airtable.base(airtableBaseId);
+
+  return new Promise((resolve, reject) => {
+    const allBooks = [];
+
+    base(baseName)
+      .select({
+        fields: OVERVIEW_FIELDS.concat(["ISBN"]),
+      })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records.forEach((record) => {
+            allBooks.push(getBasic(record.fields));
+          });
+
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            reject(err);
+            return;
+          }
+
+          resolve(allBooks);
+        }
+      );
+  });
+};
 
 /**
  * Fetch books from airtable

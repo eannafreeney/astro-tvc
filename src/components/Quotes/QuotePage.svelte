@@ -14,7 +14,6 @@ function openModal() {
      showModal = true
     }
 
-
 </script>
 
 <h1>Add a New Printer</h1>

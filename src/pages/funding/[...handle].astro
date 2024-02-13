@@ -20,7 +20,9 @@ if (!info) {
 const { ID, SKU } = info;
 
 const headers = Astro.request.headers;
-const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
+const context = Astro.locals.netlify?.context;
+console.log(context);
+const ip = headers.get("x-vercel-forwarded-for") || context?.ip || "127.0.0.1";
 
 const [shopifyProduct, airtableData] = await Promise.all([
   getProductByID({

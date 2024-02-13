@@ -1,15 +1,11 @@
-import { z } from "zod";
-import { CartResult, ProductResult } from "./schemas";
+import { CartResult } from "./schemas";
 import { config } from "./config";
 import {
-  ProductsQuery,
-  ProductByHandleQuery,
   ProductByIDQuery,
   CreateCartMutation,
   AddCartLinesMutation,
   GetCartQuery,
   RemoveCartLinesMutation,
-  ProductRecommendationsQuery,
 } from "./graphql";
 
 // Make a request to Shopify's GraphQL API  and return the data object from the response body as JSON data.
@@ -72,10 +68,6 @@ export const getProductByID = async (options) => {
 
   const { product } = data;
   return product;
-
-  const parsedProduct = ProductResult.parse(product);
-
-  return parsedProduct;
 };
 
 // Create a cart and add a line item to it and return the cart object

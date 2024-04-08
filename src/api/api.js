@@ -3,7 +3,7 @@ import { slugify } from "../utils/common";
 import { OVERVIEW_FIELDS, getOverview, getBasic } from "./transformers";
 
 const airtableBaseId = import.meta.env.PRIVATE_CATEALOGUE_BASE_ID;
-const apiKey = "keyLDxOIdcrX4g6KY";
+const apiKey = import.meta.env.PRIVATE_AIRTABLE_API;
 const baseName = "Catalogue";
 
 Airtable.configure({

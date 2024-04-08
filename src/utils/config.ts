@@ -9,8 +9,8 @@ const defineConfig = {
     ? import.meta.env.PRIVATE_SHOPIFY_STOREFRONT_ACCESS_TOKEN
     : "",
   apiVersion: "2023-01",
-  airtableBaseId: import.meta.env.PRIVATE_AIRTABLE_API,
-  airtableAPI: import.meta.env.PRIVATE_AIRTABLE_BASE_ID,
+  airtableBaseId: import.meta.env.PRIVATE_AIRTABLE_BASE_ID,
+  airtableAPI: import.meta.env.PRIVATE_AIRTABLE_API,
 };
 
 export const config = configSchema.parse(defineConfig);

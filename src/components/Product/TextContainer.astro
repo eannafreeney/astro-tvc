@@ -37,12 +37,16 @@ const percentageFunded = calcPercentageSold(
       }
     </ul>
   </div>
-  <AddToCartForm
-    client:load
-    variants={variants}
-    isFunding={isFunding}
-    percentageFunded={percentageFunded}
-  />
+  {
+    variants && variants.length > 0 && (
+      <AddToCartForm
+        client:load
+        variants={variants}
+        isFunding={isFunding}
+        percentageFunded={percentageFunded}
+      />
+    )
+  }
   <Accordions description={airtableData.description} bio={airtableData.bio} />
   {
     isFunding && (

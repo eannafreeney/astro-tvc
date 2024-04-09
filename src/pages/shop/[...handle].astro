@@ -39,7 +39,10 @@ const [shopifyProduct, airtableData] = await Promise.all([
     buyerIP: ip,
   }),
   getBookBySKU(SKU),
-]);
+]).catch((error) => {
+  console.error("Error fetching data => ", error);
+  return [{}, {}];
+})
 
 export const prerender = true;
 ---

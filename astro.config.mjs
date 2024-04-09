@@ -10,7 +10,7 @@ import alpinejs from "@astrojs/alpinejs";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: netlify(),
+  adapter: netlify({imageCDN: false}),
   integrations: [
     tailwind({
       config: {

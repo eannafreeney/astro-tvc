@@ -45,3 +45,9 @@ export async function status(status, url) {
     status,
   });
 }
+
+export const getTenDifferentAvailableBooks = (books, title) =>
+  books
+    .filter((b) => b.title.toLowerCase() !== title.toLowerCase())
+    .filter((b) => !b.categories.includes("Sold Out"))
+    .slice(0, 10);

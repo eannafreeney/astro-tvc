@@ -8,14 +8,14 @@
 
   $: formatedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: price.currencyCode,
+    currency: price?.currencyCode,
     currencyDisplay: showCurrency ? "symbol" : "narrowSymbol",
   }).format(parseFloat(price.amount));
 
   $: if (compareAtPrice) {
   formatedCompareAtPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: compareAtPrice.currencyCode,
+    currency: compareAtPrice?.currencyCode,
     currencyDisplay: showCurrency ? "symbol" : "narrowSymbol",
   }).format(parseFloat(compareAtPrice.amount));
 }

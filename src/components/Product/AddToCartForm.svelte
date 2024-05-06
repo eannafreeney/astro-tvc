@@ -6,11 +6,11 @@
   export let isFunding;
   export let percentageFunded;
 
-  let selectedVariant = variants[0]
-  let hasVariants = variants.length > 1;
+  let selectedVariant = variants?.[0]
+  let hasVariants = variants?.length > 1;
   let quantity = 1
   
-  $: isFirstVariant = selectedVariant === variants[0]
+  $: isFirstVariant = selectedVariant === variants?.[0]
   $: variantInCart =
     $cart &&
     $cart.lines?.nodes.filter((item) => item.merchandise.id === selectedVariant.id)[0];
@@ -48,9 +48,9 @@
 
 <div class="container text-md">
   <Money 
-  price={selectedVariant.price}
-  compareAtPrice={selectedVariant.compareAtPrice}
-  isFirstVariant={isFirstVariant}
+    price={selectedVariant?.price}
+    compareAtPrice={selectedVariant?.compareAtPrice}
+    isFirstVariant={isFirstVariant}
   />
   {#if isFunding}<span>{`/ ${percentageFunded}% Funded`}</span>{/if}
 </div>

@@ -14,7 +14,10 @@ export async function getStaticPaths() {
 }
 
 const { handle } = Astro.params;
+console.log("handle", handle);
+
 const info = books[handle];
+console.log("info", info);
 
 if (!info) {
   const error = await fetch(`${Astro.url}/404`);
@@ -29,8 +32,6 @@ const { ID, SKU } = info;
 
 const headers = Astro.request.headers;
 const context = Astro.locals.netlify?.context;
-console.log("client ip");
-console.log(context?.ip);
 const ip = headers.get("x-vercel-forwarded-for") || context?.ip || "127.0.0.1";
 
 const [shopifyProduct, airtableData] = await Promise.all([
@@ -49,6 +50,6 @@ console.log(airtableData);
 export const prerender = true;
 ---
 
-<Layout title={airtableData.title}>
+<Layout title={airtableData?.title}>
   <ProductPage {airtableData} {shopifyProduct} />
 </Layout>

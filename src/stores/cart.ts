@@ -99,6 +99,7 @@ export async function addCartItem(item: { id: string; quantity: number }) {
       isCartDrawerOpen.set(true);
     }
   }
+  console.log("CART", cart);
 }
 
 export async function removeCartItems(lineIds: string[]) {

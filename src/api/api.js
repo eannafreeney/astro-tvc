@@ -2,7 +2,7 @@ import Airtable from "airtable";
 import { slugify } from "../utils/common";
 import { OVERVIEW_FIELDS, getOverview, getBasic } from "./transformers";
 
-const airtableBaseId = import.meta.env.PRIVATE_CATEALOGUE_BASE_ID;
+const airtableBaseId = import.meta.env.PRIVATE_AIRTABLE_BASE_ID;
 const apiKey = import.meta.env.PRIVATE_AIRTABLE_API;
 const baseName = "Catalogue";
 
@@ -90,12 +90,15 @@ export const getBookBySKU = async (SKU) => {
   return new Promise((resolve, reject) => {
     let book;
 
+    console.log("SKU", SKU);
+
     base(baseName)
       .select()
       .eachPage(
         function page(records, fetchNextPage) {
           records?.filter(isRecordAvailable).forEach((record) => {
             if (record.get("SKU") === SKU) {
+              console.log("SKU: ", SKU, record.fields);
               book = record.fields;
             }
           });
@@ -116,6 +119,8 @@ export const getBookBySKU = async (SKU) => {
 
 export const getCollection = async (handle, limit) => {
   const base = Airtable.base(airtableBaseId);
+
+  console.log("base", base);
 
   return new Promise((resolve, reject) => {
     let books = [];

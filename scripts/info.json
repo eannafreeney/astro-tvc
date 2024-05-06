@@ -78,7 +78,7 @@
     "american-motel-signs-iii",
     "ecology-of-dreams",
     "kochi-nights",
-    "bury-me-in-the-back-forty",
+    "bury-me-in-the-back-forty-pre-sale",
     "crown-ditch",
     "a-small-guide-to-homeownership",
     "undercover",
@@ -133,7 +133,7 @@
     "julia-gaisbacher",
     "giannis-manolis",
     "steve-fitch",
-    "isidro-ramrez",
+    "isidro-ramirez",
     "ewan-telford",
     "hans-christian-schink",
     "kyler-zeleny",
@@ -144,7 +144,7 @@
     "gianpaolo-arena",
     "norbert-graf",
     "scott-conarroe",
-    "eanna-de-freine",
+    "anna-de-frine",
     "francisco-ibanez-hantke",
     "paul-hiller",
     "wolfgang-hildebrand",
@@ -156,17 +156,13 @@
   "collections": [
     "editions",
     "featured",
-    "sale",
-    "final-copies",
+    "sold-out",
     "recent",
     "city-diaries",
-    "sold-out",
-    "funding",
+    "final-copies",
     "new"
   ],
-  "funding": {
-    "bury-me-in-the-back-forty": true
-  },
+  "funding": {},
   "books": {
     "the-new-towns": {
       "ID": 5784907055272,
@@ -280,7 +276,7 @@
       "ID": 1353519661109,
       "SKU": "TVC059"
     },
-    "bury-me-in-the-back-forty": {
+    "bury-me-in-the-back-forty-pre-sale": {
       "ID": 8298846978314,
       "SKU": "TVC100"
     },

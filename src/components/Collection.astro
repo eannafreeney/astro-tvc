@@ -1,6 +1,6 @@
 ---
-import { slugify } from "@/utils/common";
-import { getCollectionByRelease } from "../utils/airtable";
+import { getTenDifferentAvailableBooks, slugify } from "@/utils/common";
+import { getCollectionByRelease } from "../utils/airtable.ts";
 import { ProductsContainer, Product } from "./Product/index";
 
 const { qty = 10, collection, currentProduct, title, link } = Astro.props;
@@ -8,10 +8,7 @@ const { qty = 10, collection, currentProduct, title, link } = Astro.props;
 const books = await getCollectionByRelease(slugify(collection), qty);
 
 const filteredBooks = currentProduct
-  ? books
-      .filter((b) => b.title.toLowerCase() !== title.toLowerCase())
-      .filter((b) => !b.categories.includes("Sold Out"))
-      .slice(0, 10)
+  ? getTenDifferentAvailableBooks(books, title)
   : books;
 
 const updatedTitle = currentProduct ? `More ${collection}` : title;

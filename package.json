@@ -43,5 +43,8 @@
   },
   "resolutions": {
     "rollup": "npm:@rollup/wasm-node"
+  },
+  "engines": {
+    "node": "^18.17.1"
   }
 }

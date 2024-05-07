@@ -2,11 +2,12 @@ import fs from "fs";
 import Airtable from "airtable";
 
 const airtableBaseId = "appJK9YS14GbeGi1K";
-const apiKey = "keyLDxOIdcrX4g6KY";
+const apiKey =
+  "patmQ3bCZNkRKl1HZ.6cf726b44c3e6de2357205c687b004abd1a86f7c98b17379a51e20e591b593ce";
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
-  apiKey: apiKey,
+  apiKey,
 });
 
 // get a list of all artists, tags and titles so that pages can be prerendered per route

@@ -43,8 +43,9 @@ const [shopifyProduct, airtableData] = await Promise.all([
 ]).catch((error) => {
   console.error("Error fetching data => ", error);
   return [{}, {}];
-})
+});
 
+console.log(shopifyProduct);
 console.log(airtableData);
 
 export const prerender = true;
